@@ -21,7 +21,7 @@ public class TestA {
 		//登录
 		res = http.post("http://www.testingedu.com.cn/inter/HTTP//login?username=will&password=123456");
 		System.out.println(res);
-		//http.addHead("token", "14d7f862d890417b8e50a45455ca1f31");
+//		http.addHead("token", "02f469785ff84c12979b5be372c1f75e");
 		//获取用户信息
 		res = http.post("http://www.testingedu.com.cn/inter/HTTP//getUserInfo?id=1");
 		System.out.println(res);		
