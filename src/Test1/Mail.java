@@ -15,7 +15,7 @@ public class Mail {
 	public String myEmailPassword="";
 	//SMTP服务器地址
 	public String myEmailSMTPHost="";
-	//smtp端口
+	//SMTP端口
 	public String smtpPort="";
 	//发件人邮箱 应与登陆邮箱相同
 	public String sendMail="";
