@@ -1,4 +1,4 @@
-package Test1;
+package com.TestFrame;
 
 import java.io.IOException;
 import org.apache.http.HttpEntity;

@@ -1,8 +1,10 @@
-package Test1;
+package com.test;
 
 import java.io.IOException;
 import org.apache.http.ParseException;
 import org.json.JSONObject;
+
+import com.TestFrame.Http;
 
 public class TestA {
 
