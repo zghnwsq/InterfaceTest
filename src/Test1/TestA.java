@@ -1,7 +1,6 @@
 package Test1;
 
 import java.io.IOException;
-
 import org.apache.http.ParseException;
 import org.json.JSONObject;
 
