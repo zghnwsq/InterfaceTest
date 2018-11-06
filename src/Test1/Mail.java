@@ -17,7 +17,7 @@ public class Mail {
 	public String myEmailSMTPHost="";
 	//smtp端口
 	public String smtpPort="";
-	//发件人邮箱
+	//发件人邮箱 应与登陆邮箱相同
 	public String sendMail="";
 	//收件人,逗号分隔
 	public String receiveMailAccount="";
@@ -83,7 +83,7 @@ public class Mail {
 	}
 	
 	//发送邮件
-	public void send(String content) throws UnsupportedEncodingException, MessagingException {
+	public void send(String content) throws UnsupportedEncodingException, MessagingException {		
 		//1.创建参数配置，用于连接邮件服务器的参数配置
 		props = new Properties();
 		props.setProperty("mail.transport.protocol", "smtp"); //传输协议
@@ -110,17 +110,10 @@ public class Mail {
 		//错误日志会在log中详细记录
 		trans.connect(myEmailAccount, myEmailPassword);
 		//发送邮件，message.getAllRecipients()获取到的是在创建邮件时添加的所有收件人
-		trans.sendMessage(message, message.getAllRecipients());
-		
+		trans.sendMessage(message, message.getAllRecipients());		
 		//关闭连接
 		trans.close();
 	}
 	
 	
-
-	
-	
-	
-	
-
 }
