@@ -13,7 +13,7 @@ import org.apache.poi.ss.usermodel.CellType;
 
 public class Excel {
 	
-    public static List<List<String>> readExcel(String path) {
+    public static List<List<String>> readExcel(String path, String sheetName) {
         String fileType = path.substring(path.lastIndexOf(".") + 1);
         // return a list contains many list
         List<List<String>> lists = new ArrayList<List<String>>();
@@ -33,7 +33,8 @@ public class Excel {
             }
 
             //读取第一个工作页sheet
-            Sheet sheet = wb.getSheetAt(0);
+            //Sheet sheet = wb.getSheetAt(0);
+            Sheet sheet = wb.getSheet(sheetName);
             //第一行为标题
             for (Row row : sheet) {
                 ArrayList<String> list = new ArrayList<String>();

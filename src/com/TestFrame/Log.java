@@ -23,24 +23,24 @@ public class Log {
 		//设置日志输出到文档的内容级别，默认INFO
 		if(level=="SEVERE"){
 			log.setLevel(Level.SEVERE);
-		}else if(level=="WARNING"){
+		}else if(level.equals("WARNING")){
 			log.setLevel(Level.WARNING);
-		}else if(level=="CONFIG"){
+		}else if(level.equals("CONFIG")){
 			log.setLevel(Level.CONFIG);
-		}else if(level=="FINE"){
+		}else if(level.equals("FINE")){
 			log.setLevel(Level.FINE);
 		}else{
 			log.setLevel(Level.INFO);
 		}		
 		//写入文件的handler
-        fileHandler = new FileHandler("./../../log/"+logName+".log");  
-		if(level=="SEVERE"){
+        fileHandler = new FileHandler("./../../log/"+logName+".log", true);  
+		if(level.equals("SEVERE")){
 	        fileHandler.setLevel(Level.SEVERE);
-		}else if(level=="WARNING"){
+		}else if(level.equals("WARNING")){
 	        fileHandler.setLevel(Level.WARNING);
-		}else if(level=="CONFIG"){
+		}else if(level.equals("CONFIG")){
 	        fileHandler.setLevel(Level.CONFIG);
-		}else if(level=="FINE"){
+		}else if(level.equals("FINE")){
 	        fileHandler.setLevel(Level.FINE);
 		}else{
 	        fileHandler.setLevel(Level.INFO);
@@ -55,13 +55,13 @@ public class Log {
 	 */
 	
 	public void write(String lev, String logMsg){
-		if(lev == "SEVERE"){
+		if(lev.equals("SEVERE")){
 			log.severe(logMsg);
-		}else if(lev == "WARNING"){
+		}else if(lev.equals("WARNING")){
 			log.severe(logMsg);
-		}else if(lev == "CONFIG"){
+		}else if(lev.equals("CONFIG")){
 			log.config(logMsg);
-		}else if(lev == "FINE"){
+		}else if(lev.equals("FINE")){
 			log.fine(logMsg);
 		}else{
 			log.info(logMsg);

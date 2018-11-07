@@ -83,7 +83,7 @@ public class Mail {
 	}
 	
 	//发送邮件
-	public void send(String content) throws UnsupportedEncodingException, MessagingException {		
+	public void send() throws UnsupportedEncodingException, MessagingException {		
 		//1.创建参数配置，用于连接邮件服务器的参数配置
 		props = new Properties();
 		props.setProperty("mail.transport.protocol", "smtp"); //传输协议
