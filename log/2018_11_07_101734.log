@@ -1,0 +1,8 @@
+Nov 07, 2018 10:17:35 PM com.TestFrame.Log write
+信息: new Http Object set
+Nov 07, 2018 10:17:35 PM com.TestFrame.Log write
+信息: set post url: http://www.testingedu.com.cn/inter/HTTP/auth
+Nov 07, 2018 10:17:35 PM com.TestFrame.Log write
+信息: try to send request
+Nov 07, 2018 10:17:35 PM com.TestFrame.Log write
+严重: org.apache.http.client.ClientProtocolException

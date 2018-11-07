@@ -52,15 +52,18 @@ public class TestSuit {
 					testSuit.add(new String[]{caseName, String.valueOf(initRow), String.valueOf(endRow), begTime, endTime, result});
 				}
 			}else if(!row.get(0).toString().equals(caseName) && !caseName.equals("")){ //第二个用例开始		
-					endRow = cusor-1;
-					String[] tc = {caseName, String.valueOf(initRow), String.valueOf(endRow), begTime, endTime, result};
-					testSuit.add(tc);
-					caseName = row.get(0).toString();
-					initRow = cusor;
-					endRow = cusor;
-					if(cusor == sheet.size()-1) {
-						testSuit.add(new String[]{caseName, String.valueOf(initRow), String.valueOf(endRow), begTime, endTime, result});
-					}				
+				endRow = cusor-1;
+				String[] tc = {caseName, String.valueOf(initRow), String.valueOf(endRow), begTime, endTime, result};
+				testSuit.add(tc);
+				caseName = row.get(0).toString();
+				initRow = cusor;
+				endRow = cusor;
+				if(cusor == sheet.size()-1) {
+					testSuit.add(new String[]{caseName, String.valueOf(initRow), String.valueOf(endRow), begTime, endTime, result});
+				}				
+			}else if(row.get(0).toString().equals(caseName) && cusor == sheet.size()-1){
+				endRow = cusor;
+				testSuit.add(new String[]{caseName, String.valueOf(initRow), String.valueOf(endRow), begTime, endTime, result});
 			}else {
 				endRow = cusor; //中间行
 			}

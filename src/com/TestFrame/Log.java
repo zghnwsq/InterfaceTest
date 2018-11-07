@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.logging.SimpleFormatter;
 
 public class Log {
 	
@@ -33,7 +34,8 @@ public class Log {
 			log.setLevel(Level.INFO);
 		}		
 		//写入文件的handler
-        fileHandler = new FileHandler("./../../log/"+logName+".log", true);  
+        fileHandler = new FileHandler("./log/"+logName+".log", true);  
+        fileHandler.setFormatter(new SimpleFormatter());
 		if(level.equals("SEVERE")){
 	        fileHandler.setLevel(Level.SEVERE);
 		}else if(level.equals("WARNING")){

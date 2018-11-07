@@ -51,7 +51,7 @@ public class Http {
 		if(!url.equals("")) {
 			this.url = url;
 		}
-		HttpPost httpPost = new HttpPost(url);
+		HttpPost httpPost = new HttpPost(this.url);
 		if (!key.equals("")){
 			httpPost.addHeader(key,value);
 		}

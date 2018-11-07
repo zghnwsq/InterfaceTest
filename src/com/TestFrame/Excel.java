@@ -50,8 +50,8 @@ public class Excel {
             e.printStackTrace();
         } finally {
             try {
-            		if (wb != null) wb.close();
-                if (is != null) is.close();
+            		wb.close();
+                is.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
