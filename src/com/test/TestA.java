@@ -14,7 +14,7 @@ public class TestA {
 		http.url = "http://www.testingedu.com.cn/inter/HTTP/auth";
 		//获取token
 		String res = http.post("");
-		//josn格式响应
+		//JSON格式响应
 		JSONObject json = new JSONObject(res);
 		System.out.println(json);
 		System.out.println("get token:"+json.getString("token"));	

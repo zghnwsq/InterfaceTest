@@ -13,6 +13,7 @@ public class testMail {
 		mail.setMail("tedwang", "tedwang@sina.cn", "tedwang@sina.cn", "", "report test", "软件测试报告");
 		mail.send();
 
+		
 	}
 
 }
