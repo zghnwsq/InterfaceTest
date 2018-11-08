@@ -18,6 +18,7 @@ public class TestA {
 		JSONObject json = new JSONObject(res);
 		System.out.println(json);
 		System.out.println("get token:"+json.getString("token"));	
+		System.out.println("get token:"+json.getInt("status"));
 		//添加token到head
 		http.addHead("token", json.getString("token"));
 		//登录

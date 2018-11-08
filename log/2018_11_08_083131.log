@@ -1,0 +1,10 @@
+Nov 08, 2018 8:31:32 PM com.TestFrame.Log write
+信息: new Http Object set
+Nov 08, 2018 8:31:32 PM com.TestFrame.Log write
+信息: set post url: http://www.testingedu.com.cn/inter/HTTP/auth
+Nov 08, 2018 8:31:32 PM com.TestFrame.Log write
+信息: try to send request
+Nov 08, 2018 8:31:32 PM com.TestFrame.Log write
+信息: response:-->|{"status":200,"msg":"success","token":"caef492229fd4522b7ab4c148c26d71d"}|<---
+Nov 08, 2018 8:31:32 PM com.TestFrame.Log write
+信息: token: --->|caef492229fd4522b7ab4c148c26d71d|<---

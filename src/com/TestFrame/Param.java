@@ -39,10 +39,10 @@ public class Param {
 	 */
 	public String getParam(String param) {
 		String tmp="";
-		if(param.indexOf("${")==-1) {
-			tmp = paramMap.get(param.substring(param.indexOf("${")+2, param.indexOf("}")).trim());
+		if(param.indexOf("${")!=-1) {
+			tmp = paramMap.get(param.substring(param.indexOf("${")+2, param.indexOf("}")).trim()); //从参数map中查出来后去空格
 		}else {
-			tmp = param;
+			tmp = param.trim(); //传入的也去空格
 		}
 		
 		if(tmp.equals("")) {

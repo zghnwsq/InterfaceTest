@@ -1,0 +1,16 @@
+Nov 08, 2018 9:16:28 PM com.TestFrame.Log write
+信息: new Http Object set
+Nov 08, 2018 9:16:28 PM com.TestFrame.Log write
+信息: set post url: http://www.testingedu.com.cn/inter/HTTP/auth
+Nov 08, 2018 9:16:28 PM com.TestFrame.Log write
+信息: try to send request
+Nov 08, 2018 9:16:28 PM com.TestFrame.Log write
+信息: response:-->|{"status":200,"msg":"success","token":"ed91c4a6cc4e48b08ac1f37b85d2c64a"}|<---
+Nov 08, 2018 9:16:28 PM com.TestFrame.Log write
+信息: token: --->|ed91c4a6cc4e48b08ac1f37b85d2c64a|<---
+Nov 08, 2018 9:16:28 PM com.TestFrame.Log write
+信息: token added: --->|ed91c4a6cc4e48b08ac1f37b85d2c64a|<---
+Nov 08, 2018 9:16:28 PM com.TestFrame.Log write
+严重: org.json.JSONException: JSONObject["status"] not a string.
+Nov 08, 2018 9:16:28 PM com.TestFrame.Log write
+信息: 响应包含字符串：success

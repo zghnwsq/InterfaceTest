@@ -18,6 +18,7 @@ public class Run {
 		Log log = new Log(ft.format(suitBegTime), "INFO");
 		Keyword k = new Keyword(log);
 		TestSuit ts = new TestSuit(excel, sheetName);
+		Param p = new Param();
 		List<String[]> suit = ts.getTestSuit();
 		//		 suit.get(0)[3]="";
 		List<List<String>> cases = ts.getTestCaseColletion();
@@ -30,19 +31,22 @@ public class Run {
 				String p1="";
 				if(cases.get(Integer.valueOf(i)).size() > 2){
 					p1 = cases.get(Integer.valueOf(i)).get(2); //p1
+					p1 = p.getParam(p1);
 				}
 				//如果p2单元格为空,则填空字符串
 				String p2 = "";
 				if(cases.get(Integer.valueOf(i)).size() > 3){
 					p2 = cases.get(Integer.valueOf(i)).get(3); //p2
+					p2 = p.getParam(p2);
 				}
 				//如果p3单元格为空,则填空字符串
 				String p3 = "";
 				if(cases.get(Integer.valueOf(i)).size() > 4){
 					p3 = cases.get(Integer.valueOf(i)).get(4); //p3
+					p3 = p.getParam(p3);
 				}
 				String params[] = {p1, p2, p3};
-				result = k.keyword(action, params) && result;
+				result = k.keyword(action, params, p) && result;
 			}
 			c[4] = ft2.format(new Date()); //写入用例结束时间
 			if(result){
