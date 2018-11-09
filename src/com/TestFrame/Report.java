@@ -12,14 +12,14 @@ public class Report {
     		"                        	<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseEndTime%</td>\n" + 
     		"                      		<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc; %caseResult%</td>\n" + 
     		"					</tr>";
-    public String html="";
+    public String html ="";
     
  	public Report(List<String[]> suit){
 		this.suit = suit;
 	}
  	
  	public String buildReport(){
- 		String suitResult = ""; //整个用例集结果
+ 		String suitResult = "PASS"; //整个用例集结果
  		int pass = 0; //通过用例数
  		int fail = 0; //失败用例数
  		int noresult = 0; //没有结果
@@ -40,14 +40,14 @@ public class Report {
 			}
 			suitEndTime = i[4];
 			caseRow = caseRow + caseModel.replaceFirst("%caseName%", i[0]);
-			caseRow = caseRow +caseRow.replaceFirst("%caseBegTime%", i[3]);
-			caseRow = caseRow +caseRow.replaceFirst("%caseEndTime%", i[4]);
+			caseRow = caseRow.replaceFirst("%caseBegTime%", i[3]);
+			caseRow = caseRow.replaceFirst("%caseEndTime%", i[4]);
 			if(i[5].equals("PASS")) {
-				caseRow = caseRow +caseRow.replaceFirst("%caseResult%", "color:#00FF00\">" + i[5]);
+				caseRow = caseRow.replaceFirst("%caseResult%", "color:#00FF00\">" + i[5]);
 			}else if(i[5].equals("FAIL")) {
-				caseRow = caseRow +caseRow.replaceFirst("%caseResult%", "color:#FF0000\">" + i[5]);
+				caseRow = caseRow.replaceFirst("%caseResult%", "color:#FF0000\">" + i[5]);
 			}else {
-				caseRow = caseRow +caseRow.replaceFirst("%caseResult%", "\">" + i[5]);
+				caseRow = caseRow.replaceFirst("%caseResult%", "\">" + i[5]);
 			}
 		}
 		int sum = pass+fail+noresult;
@@ -57,21 +57,21 @@ public class Report {
 		}else {
 			ratio = 0;
 		}
-		html = ReadFile.readToString("./html/model", "UTF-8");
-		html.replaceFirst("%testSuitDuration%", suitBegTime+" - "+suitEndTime);
-		html.replaceFirst("%casesCount%", String.valueOf(sum));
-		html.replaceFirst("%pass%", String.valueOf(pass));
-		html.replaceFirst("%fail%", String.valueOf(fail));
-		html.replaceFirst("%noresult%", String.valueOf(noresult));
+		html = ReadFile.readToString("./html/model.txt", "UTF-8");
+		html = html.replace("%testSuitDuration%", suitBegTime+" - "+suitEndTime);
+		html = html.replace("%casesCount%", String.valueOf(sum));
+		html = html.replace("%pass%", String.valueOf(pass));
+		html = html.replace("%fail%", String.valueOf(fail));
+		html = html.replace("%noresult%", String.valueOf(noresult));
 		if(suitResult.equals("PASS")){
-			html.replaceFirst("%suitResult%", "color:#00FF00\">"+suitResult);
+			html = html.replace("%suitResult%", "color:#00FF00\">"+suitResult);
 		}else if(suitResult.equals("FAIL")){
-			html.replaceFirst("%suitResult%", "color:#FF0000\">"+suitResult);
+			html = html.replace("%suitResult%", "color:#FF0000\">"+suitResult);
 		}else {
-			html.replaceFirst("%suitResult%", "\">"+suitResult);
+			html = html.replace("%suitResult%", "\">"+suitResult);
 		}
-		html.replaceFirst("%ratio%", String.valueOf(ratio)+"%");
-		html.replaceFirst("%casesRow%", caseRow);
+		html = html.replace("%ratio%", String.valueOf(ratio)+"%");
+		html = html.replace("%casesRow%", caseRow);
 		
 		return html;		
  	}

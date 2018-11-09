@@ -1,0 +1,24 @@
+Nov 09, 2018 8:58:24 PM com.TestFrame.Log write
+信息: new Http Object set
+Nov 09, 2018 8:58:24 PM com.TestFrame.Log write
+信息: set post url: http://www.testingedu.com.cn/inter/HTTP/auth
+Nov 09, 2018 8:58:24 PM com.TestFrame.Log write
+信息: try to send request
+Nov 09, 2018 8:58:24 PM com.TestFrame.Log write
+信息: response:-->|{"status":200,"msg":"success","token":"bb20a24d4d6949109e55d50277561898"}|<---
+Nov 09, 2018 8:58:24 PM com.TestFrame.Log write
+信息: try to get token
+Nov 09, 2018 8:58:24 PM com.TestFrame.Log write
+信息: token: --->|bb20a24d4d6949109e55d50277561898|<---
+Nov 09, 2018 8:58:24 PM com.TestFrame.Log write
+信息: try to add token
+Nov 09, 2018 8:58:24 PM com.TestFrame.Log write
+信息: token added: --->|bb20a24d4d6949109e55d50277561898|<---
+Nov 09, 2018 8:58:24 PM com.TestFrame.Log write
+信息: assertJson: --->|status = 200|<---
+Nov 09, 2018 8:58:24 PM com.TestFrame.Log write
+信息: status: --->|200|<--- PASS
+Nov 09, 2018 8:58:24 PM com.TestFrame.Log write
+信息: assertResContain: --->|success|<---
+Nov 09, 2018 8:58:24 PM com.TestFrame.Log write
+信息: 响应包含字符串：success-PASS
