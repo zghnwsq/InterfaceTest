@@ -72,7 +72,7 @@
                         						<td height="28" bgcolor="#FFFFFF" align="center" style="border:1px solid #ccc;">%pass%</td>
                         						<td bgcolor="#FFFFFF" align="center" style="border:1px solid #ccc;">%fail%</td>
                         						<td bgcolor="#FFFFFF" align="center" style="border:1px solid #ccc;">%noresult%</td>
-                      							<td bgcolor="#FFFFFF" align="center" style="border:1px solid #ccc; color:#00FF00">%suitResult%</td>
+                      							<td bgcolor="#FFFFFF" align="center" style="border:1px solid #ccc; %suitResult%</td>
 									<td bgcolor="#FFFFFF" align="center" style="border:1px solid #ccc;">%ratio%</td>
 								</tr>				
                     					</tbody>
