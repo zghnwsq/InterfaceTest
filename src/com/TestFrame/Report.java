@@ -9,8 +9,8 @@ public class Report {
 	public String caseModel = "<tr>\n" + 
     		"                        	<td height=\"28\" bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseName%</td>\n" + 
     		"                        	<td height=\"28\" bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseBegTime%</td>\n" + 
-    		"                        	<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseEndTime%</td>                   \n" + 
-    		"                      		<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc; color:#00FF00 \">%caseResult%</td>\n" + 
+    		"                        	<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseEndTime%</td>\n" + 
+    		"                      		<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc; %caseResult%</td>\n" + 
     		"					</tr>";
     public String html="";
     
@@ -42,7 +42,13 @@ public class Report {
 			caseRow = caseRow + caseModel.replaceFirst("%caseName%", i[0]);
 			caseRow = caseRow +caseRow.replaceFirst("%caseBegTime%", i[3]);
 			caseRow = caseRow +caseRow.replaceFirst("%caseEndTime%", i[4]);
-			caseRow = caseRow +caseRow.replaceFirst("%caseResult%", i[5]);
+			if(i[5].equals("PASS")) {
+				caseRow = caseRow +caseRow.replaceFirst("%caseResult%", "color:#00FF00\">" + i[5]);
+			}else if(i[5].equals("FAIL")) {
+				caseRow = caseRow +caseRow.replaceFirst("%caseResult%", "color:#FF0000\">" + i[5]);
+			}else {
+				caseRow = caseRow +caseRow.replaceFirst("%caseResult%", "\">" + i[5]);
+			}
 		}
 		int sum = pass+fail+noresult;
 		float ratio ;
@@ -57,7 +63,13 @@ public class Report {
 		html.replaceFirst("%pass%", String.valueOf(pass));
 		html.replaceFirst("%fail%", String.valueOf(fail));
 		html.replaceFirst("%noresult%", String.valueOf(noresult));
-		html.replaceFirst("%suitResult%", String.valueOf(suitResult));
+		if(suitResult.equals("PASS")){
+			html.replaceFirst("%suitResult%", "color:#00FF00\">"+suitResult);
+		}else if(suitResult.equals("FAIL")){
+			html.replaceFirst("%suitResult%", "color:#FF0000\">"+suitResult);
+		}else {
+			html.replaceFirst("%suitResult%", "\">"+suitResult);
+		}
 		html.replaceFirst("%ratio%", String.valueOf(ratio)+"%");
 		html.replaceFirst("%casesRow%", caseRow);
 		

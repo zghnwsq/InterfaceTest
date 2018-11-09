@@ -59,13 +59,13 @@ public class Mail {
 		MimeMessage msg = new MimeMessage(session);
 		//发件人
 		msg.setFrom(new InternetAddress(sendMail,user,"UTF-8"));
-		//收件人
+		//收件人 逗号分隔?
 		if(!receiveMailAccount.equals("")){
 			new InternetAddress();
 			InternetAddress[] internetAddressTo = InternetAddress.parse(receiveMailAccount);
 			msg.setRecipients(MimeMessage.RecipientType.TO, internetAddressTo);
 		}
-		//抄送
+		//抄送 逗号分隔?
 		if(! copyMailAccount.equals("")){
 			new InternetAddress();
 			InternetAddress[] internetAddressCC = InternetAddress.parse(copyMailAccount);
