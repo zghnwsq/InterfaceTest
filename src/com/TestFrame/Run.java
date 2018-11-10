@@ -24,7 +24,8 @@ public class Run {
 		List<List<String>> cases = ts.getTestCaseColletion();
 		for(String[] c : suit){
 			c[3] = ft2.format(new Date()); //写入用例开始执行时间
-			boolean result = true;						
+			boolean result = true;
+			//System.out.println("begin of case:"+result);
 			for(int i = Integer.valueOf(c[1]); i<=Integer.valueOf(c[2]) ;i++ ){
 				String action = cases.get(Integer.valueOf(i)).get(1); //action
 				//如果p1单元格为空,则填空字符串
@@ -47,6 +48,7 @@ public class Run {
 				}
 				String params[] = {p1, p2, p3};
 				result = k.keyword(action, params, p) && result;
+				//System.out.println("this action:"+result);
 			}
 			c[4] = ft2.format(new Date()); //写入用例结束时间
 			if(result){

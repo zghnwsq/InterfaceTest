@@ -1,5 +1,6 @@
 package com.TestFrame;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class Report {
@@ -51,11 +52,12 @@ public class Report {
 			}
 		}
 		int sum = pass+fail+noresult;
-		float ratio ;
+		String ratio ;
 		if(sum >0) {
-			ratio = pass/sum*100 ;
+			DecimalFormat df = new DecimalFormat("0.00");
+			ratio = df.format((float)pass/sum*100);
 		}else {
-			ratio = 0;
+			ratio = "-";
 		}
 		html = ReadFile.readToString("./html/model.txt", "UTF-8");
 		html = html.replace("%testSuitDuration%", suitBegTime+" - "+suitEndTime);
@@ -70,7 +72,7 @@ public class Report {
 		}else {
 			html = html.replace("%suitResult%", "\">"+suitResult);
 		}
-		html = html.replace("%ratio%", String.valueOf(ratio)+"%");
+		html = html.replace("%ratio%", ratio+"%");
 		html = html.replace("%casesRow%", caseRow);
 		
 		return html;		
