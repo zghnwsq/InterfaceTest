@@ -20,7 +20,6 @@ public class Http {
 	public String value="";
 	public String url="";
 	public List<String[]> head=null;
-	
 	//构造函数
 	public Http(){
 		httpClient = HttpClientBuilder.create().build();

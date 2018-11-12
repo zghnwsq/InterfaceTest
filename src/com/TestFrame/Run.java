@@ -23,6 +23,7 @@ public class Run {
 		//		 suit.get(0)[3]="";
 		List<List<String>> cases = ts.getTestCaseColletion();
 		for(String[] c : suit){
+			log.write("INFO", "---------------CASE START: "+c[0]+"---------------");
 			c[3] = ft2.format(new Date()); //写入用例开始执行时间
 			boolean result = true;
 			//System.out.println("begin of case:"+result);
@@ -56,6 +57,7 @@ public class Run {
 			}else{
 				c[5] = "FAIL";
 			}
+			log.write("INFO", "---------------CASE END: "+c[0]+" "+c[5]+"---------------");
 		}
 		return suit; 
 	}

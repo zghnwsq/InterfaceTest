@@ -30,6 +30,8 @@ public class Report {
 			if(i[5].equals("PASS") && suitResult.equals("PASS")){
 				suitResult = "PASS";
 				pass++ ;
+			}else if(i[5].equals("PASS") && suitResult.equals("FAIL")){
+				pass++;
 			}else if(i[5].equals("")){
 				noresult++;
 			}else{
