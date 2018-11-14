@@ -3,8 +3,31 @@
   <groupId>InterfaceTest</groupId>
   <artifactId>InterfaceTest</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+  </properties>
   <build>
     <sourceDirectory>src</sourceDirectory>
+    <plugins>
+    	<plugin>
+    		<groupId>org.codehaus.mojo</groupId>
+    		<artifactId>exec-maven-plugin</artifactId>
+    	    <version>1.1.1</version>
+    	    <executions>
+    	    <execution>
+    	    	<phase>test</phase>
+    	    	<goals>
+    	    		<goal>java</goal>
+    	    	</goals>
+    	    	<configuration>
+    	    		<mainClass>com.TestFrame.MainIntrance</mainClass>
+    	    	</configuration>
+    	    </execution>
+    	    </executions>
+    	</plugin>
+    </plugins>
   </build>
   <dependencies>
 	<dependency>
