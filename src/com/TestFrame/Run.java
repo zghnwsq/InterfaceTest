@@ -12,8 +12,8 @@ public class Run {
 	public String result;
 
 	public static List<String[]> runTestSuit(String excel, String sheetName) throws SecurityException, IOException{
-		SimpleDateFormat ft = new SimpleDateFormat("yyyy_MM_dd_hhmmss");
-		SimpleDateFormat ft2 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");		
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy_MM_dd_HHmmss");
+		SimpleDateFormat ft2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");		
 		Date suitBegTime = new Date();
 		Log log = new Log(ft.format(suitBegTime), "INFO");
 		Keyword k = new Keyword(log);
