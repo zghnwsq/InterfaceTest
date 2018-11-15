@@ -49,6 +49,7 @@ public class Run {
 				}
 				String params[] = {p1, p2, p3};
 				result = k.keyword(action, params, p) && result;
+				//这里可将k.res写入excel对应行
 				//System.out.println("this action:"+result);
 			}
 			c[4] = ft2.format(new Date()); //写入用例结束时间

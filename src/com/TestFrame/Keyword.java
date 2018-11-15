@@ -35,10 +35,10 @@ public class Keyword {
 	}
 	
 	public boolean httpKeyword(String action, String[] params, Param p){
-		if(action.equals("http.post")) {
-			return httpPost(params);
+		if(action.equals("http.set")) {
+			return httpSet(params);
 		}else if(action.equals("http.send")){
-			return httpSend(params);
+			return httpPost(params);
 		}else if(action.equals("http.getToken")){
 			return httpGetToken(params, p);
 		}else if(action.equals("http.addToken")){
@@ -73,7 +73,7 @@ public class Keyword {
 	}
 	
 	
-	public boolean httpPost(String params[]) {
+	public boolean httpSet(String params[]) {
 		http = new Http();	
 		http.url= params[0];
 		log.write("INFO", "new Http Object set");
@@ -81,7 +81,7 @@ public class Keyword {
 		return true;
 	}
 	
-	public boolean httpSend(String params[]) {
+	public boolean httpPost(String params[]) {
 		if(!params[0].equals("")){
 			http.url = params[0];
 		}
