@@ -12,7 +12,14 @@ public class Report {
     		"                        	<td height=\"28\" bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseBegTime%</td>\n" + 
     		"                        	<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseEndTime%</td>\n" + 
     		"                      		<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc; %caseResult%</td>\n" + 
-    		"					</tr>";
+    		"					   </tr>";
+	public String caseModelWithTh = "<tr>"
+			+ "							<th rowspan=\"%moduleCount%\">moduleName</th>"
+			+ "							<td height=\"28\" bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseName%</td>\n"
+			+ "							<td height=\"28\" bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseBegTime%</td>\n"
+			+ "							<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseEndTime%</td>\n"
+			+ "							<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc; %caseResult%</td>\n"
+			+ "						 </tr>";
     public String html ="";
     
  	public Report(List<String[]> suit){
@@ -27,6 +34,7 @@ public class Report {
  		String suitBegTime = ""; //用例集开始时间
  		String suitEndTime = ""; //用例集结束时间
 		for(String[] i : suit){
+			//获取用例集的结果和用例起止时间
 			if(i[5].equals("PASS") && suitResult.equals("PASS")){
 				suitResult = "PASS";
 				pass++ ;
@@ -42,6 +50,7 @@ public class Report {
 				suitBegTime = i[3];
 			}
 			suitEndTime = i[4];
+			//生成用例部分的行
 			caseRow = caseRow + caseModel.replaceFirst("%caseName%", i[0]);
 			caseRow = caseRow.replaceFirst("%caseBegTime%", i[3]);
 			caseRow = caseRow.replaceFirst("%caseEndTime%", i[4]);
@@ -53,6 +62,7 @@ public class Report {
 				caseRow = caseRow.replaceFirst("%caseResult%", "\">" + i[5]);
 			}
 		}
+		//计算通过率
 		int sum = pass+fail+noresult;
 		String ratio ;
 		if(sum >0) {
@@ -61,6 +71,7 @@ public class Report {
 		}else {
 			ratio = "-";
 		}
+		//根据模板替换数据
 		html = ReadFile.readToString("./html/model.txt", "UTF-8");
 		html = html.replace("%testSuitDuration%", suitBegTime+" - "+suitEndTime);
 		html = html.replace("%casesCount%", String.valueOf(sum));
