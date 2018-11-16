@@ -22,7 +22,7 @@
     	    		<goal>java</goal>
     	    	</goals>
     	    	<configuration>
-    	    		<mainClass>com.TestFrame.MainIntrance</mainClass>
+    	    		<mainClass>com.TestFrame.MainEntrance</mainClass>
     	    	</configuration>
     	    </execution>
     	    </executions>
