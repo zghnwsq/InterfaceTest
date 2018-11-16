@@ -2,6 +2,7 @@ package com.TestFrame;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Run {
 		Keyword k = new Keyword(log); //初始化关键字
 		TestSuit ts = new TestSuit(excel, sheetName); //读取用例集
 		Param p = new Param(); //全局参数
+		List<String[]> toExcel= new ArrayList<String[]>(); //用于写入excel中的信息
 		List<String[]> suit = ts.getTestSuit(); //获取用例集信息
 		//		 suit.get(0)[3]="";
 		List<List<String>> cases = ts.getTestCaseColletion(); //获取用例集的步骤集合
@@ -47,8 +49,24 @@ public class Run {
 					p3 = p.getParam(p3);
 				}
 				String params[] = {p1, p2, p3};
-				result = k.keyword(action, params, p) && result;
-				//这里可将k.res写入excel对应行
+				boolean r = k.keyword(action, params, p);
+				result = r && result;
+				//这里可将keyword.res写入excel对应行
+				//发送请求才写入响应
+				if(action.indexOf("post")!=-1) {
+					//判断结果并写入字符串
+					if(r) {
+						toExcel.add(new String[]{"PASS",Keyword.res});
+					}else {
+						toExcel.add(new String[]{"FAIL",Keyword.res});
+					}
+				}else {
+					if(r) {
+						toExcel.add(new String[]{"PASS",""});
+					}else {
+						toExcel.add(new String[]{"FAIL",""});
+					}
+				}
 				//System.out.println("this action:"+result);
 			}
 			c[5] = ft2.format(new Date()); //写入用例结束时间
@@ -59,6 +77,7 @@ public class Run {
 			}
 			log.write("INFO", "---------------CASE END: "+c[1]+" "+c[6]+"---------------");
 		}
+		Excel.writeExcel(toExcel, excel, sheetName);
 		return suit; 
 	}
 

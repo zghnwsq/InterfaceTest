@@ -1,6 +1,5 @@
 package com.TestFrame;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -68,40 +67,48 @@ public class Excel {
     }
     
     //写入excel
-    public static void writeExcel(ArrayList<ArrayList<String>> result,String path){  
-        if(result == null){  
-            return;  
-        }  
-        HSSFWorkbook wb = new HSSFWorkbook();  
-        HSSFSheet sheet = wb.createSheet("sheet1");  
-        for(int i = 0 ;i < result.get(0).size() ; i++){  
-            HSSFRow row = sheet.createRow(i);  
-                for(int j = 0; j < result.size() ; j ++){
-                    HSSFCell cell = row.createCell((short)j);
-                    cell.setCellValue(result.get(j).get(i).toString());  
-                }  
-        }  
-        ByteArrayOutputStream os = new ByteArrayOutputStream();  
-        try  
-        {  
-            wb.write(os);  
-        } catch (IOException e){  
-            e.printStackTrace();  
-        }  
-        byte[] content = os.toByteArray();  
-        File file = new File(path);//Excel文件生成后存储的位置。  
+    public static void writeExcel(List<String[]> msg, String path, String sheetName) throws IOException{ 
+    	if(msg.isEmpty()) {
+    		return;
+    	}
+        String fileType = path.substring(path.lastIndexOf(".") + 1);
+        InputStream is = null;
+        Workbook wb = null;
+        is = new FileInputStream(path);
+        //获取工作薄
+        //Workbook wb = null;
+        if (fileType.equals("xls")) {
+            wb = new HSSFWorkbook(is);
+        } else if (fileType.equals("xlsx")) {
+            wb = new XSSFWorkbook(is);
+        }
+        Sheet sheet = wb.getSheet(sheetName);
+        for(String[] row : msg) {
+        	int i = msg.indexOf(row)+1;
+        	Row r = sheet.getRow(i);
+        	Cell cell6 = r.createCell(6);
+        	cell6.setCellType(CellType.STRING);
+        	cell6.setCellValue(row[0]);
+        	if(!row[1].equals("")) {
+	        	Cell cell7 = r.createCell(7);
+	        	cell7.setCellType(CellType.STRING);
+	        	cell7.setCellValue(row[1]);       
+        	}
+        }
+          
+        File file = new File(path.replace(".x", "_result.x"));//Excel文件生成后存储的位置。  
         OutputStream fos  = null;  
         try  
         {  
             fos = new FileOutputStream(file);  
             wb.write(fos);  
-            os.close();  
+            //os.close();  
             fos.close();
             wb.close();
         }catch (Exception e){  
             e.printStackTrace();  
         }             
-    } 
+    }
 
 
 }

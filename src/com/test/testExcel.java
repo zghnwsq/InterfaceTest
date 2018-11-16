@@ -1,6 +1,7 @@
 package com.test;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import com.TestFrame.Excel;
 import com.TestFrame.Report;
@@ -21,15 +22,15 @@ public class testExcel {
 //			System.out.println("");
 //		}
 		
-		TestSuit s = new TestSuit("./testCase/Case2.xlsx", "testCase");
-		List<String[]> suit;
-		suit = s.getTestSuit();
-		for(String[] i: suit) {
-			for(String j :i) {
-				System.out.print("|"+j+"|---");
-			}
-			System.out.println("");
-		}
+//		TestSuit s = new TestSuit("./testCase/Case2.xlsx", "testCase");
+//		List<String[]> suit;
+//		suit = s.getTestSuit();
+//		for(String[] i: suit) {
+//			for(String j :i) {
+//				System.out.print("|"+j+"|---");
+//			}
+//			System.out.println("");
+//		}
 //		Report r =  new Report(suit);
 //		r.buildReport();
 		
@@ -50,6 +51,12 @@ public class testExcel {
 //		String src = "33333333444444444";
 //		System.out.println(src.replace("33","f"));
 //	
+		List<String[]> a = new ArrayList<String[]>();
+		String[] b = {"PASS","hahaha"};
+		a.add(b);
+		Excel.writeExcel(a, "./testCase/Case2.xlsx", "testCase");
+		
+		
 
 	}
 

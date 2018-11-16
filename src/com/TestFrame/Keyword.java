@@ -91,9 +91,10 @@ public class Keyword {
 			http.url = http.url+urlParams;
 		}
 		try {
-			log.write("INFO", "try to send request");
+			log.write("INFO", "try to send request: "+http.url);
 			res = http.post("");
 			log.write("INFO", "response:-->|"+res+"|<---");
+			httpClearUrlParam(); //发送请求后,清空urlParam
 		} catch (Exception e) {
 			log.write("SEVERE", e.toString());
 			e.printStackTrace();
@@ -135,7 +136,6 @@ public class Keyword {
 		if(urlParams.equals("?")){
 			urlParams = urlParams+params[0]+"="+params[1];
 		}else{
-			
 			urlParams = urlParams+"&"+params[0]+"="+params[1];
 		}
 		log.write("INFO", "urlParams set to:--->|"+urlParams+"|<---");
