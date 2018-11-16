@@ -12,39 +12,38 @@ public class Run {
 	public String result;
 
 	public static List<String[]> runTestSuit(String excel, String sheetName) throws SecurityException, IOException{
-		SimpleDateFormat ft = new SimpleDateFormat("yyyy_MM_dd_HHmmss");
-		SimpleDateFormat ft2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");		
-		Date suitBegTime = new Date();
-		Log log = new Log(ft.format(suitBegTime), "INFO");
-		Keyword k = new Keyword(log);
-		TestSuit ts = new TestSuit(excel, sheetName);
-		Param p = new Param();
-		List<String[]> suit = ts.getTestSuit();
+		SimpleDateFormat ft = new SimpleDateFormat("yyyy_MM_dd_HHmmss"); //文件名时间戳格式
+		SimpleDateFormat ft2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");	//log时间戳格式	
+		Date suitBegTime = new Date(); //用例集开始时间
+		Log log = new Log(ft.format(suitBegTime), "INFO"); //初始化日志
+		Keyword k = new Keyword(log); //初始化关键字
+		TestSuit ts = new TestSuit(excel, sheetName); //读取用例集
+		Param p = new Param(); //全局参数
+		List<String[]> suit = ts.getTestSuit(); //获取用例集信息
 		//		 suit.get(0)[3]="";
-		List<List<String>> cases = ts.getTestCaseColletion();
+		List<List<String>> cases = ts.getTestCaseColletion(); //获取用例集的步骤集合
 		for(String[] c : suit){
-			log.write("INFO", "---------------CASE START: "+c[0]+"---------------");
-			c[3] = ft2.format(new Date()); //写入用例开始执行时间
+			c[4] = ft2.format(new Date()); //写入用例开始执行时间
 			boolean result = true;
-			//System.out.println("begin of case:"+result);
-			for(int i = Integer.valueOf(c[1]); i<=Integer.valueOf(c[2]) ;i++ ){
-				String action = cases.get(Integer.valueOf(i)).get(1); //action
+			log.write("INFO", "---------------CASE START: "+c[1]+"---------------");
+			for(int i = Integer.valueOf(c[2]); i<=Integer.valueOf(c[3]) ;i++ ){
+				String action = cases.get(Integer.valueOf(i)).get(2); //action
 				//如果p1单元格为空,则填空字符串
 				String p1="";
-				if(cases.get(Integer.valueOf(i)).size() > 2){
-					p1 = cases.get(Integer.valueOf(i)).get(2); //p1
+				if(cases.get(Integer.valueOf(i)).size() > 3){
+					p1 = cases.get(Integer.valueOf(i)).get(3); //p1
 					p1 = p.getParam(p1);
 				}
 				//如果p2单元格为空,则填空字符串
 				String p2 = "";
-				if(cases.get(Integer.valueOf(i)).size() > 3){
-					p2 = cases.get(Integer.valueOf(i)).get(3); //p2
+				if(cases.get(Integer.valueOf(i)).size() > 4){
+					p2 = cases.get(Integer.valueOf(i)).get(4); //p2
 					p2 = p.getParam(p2);
 				}
 				//如果p3单元格为空,则填空字符串
 				String p3 = "";
-				if(cases.get(Integer.valueOf(i)).size() > 4){
-					p3 = cases.get(Integer.valueOf(i)).get(4); //p3
+				if(cases.get(Integer.valueOf(i)).size() > 5){
+					p3 = cases.get(Integer.valueOf(i)).get(5); //p3
 					p3 = p.getParam(p3);
 				}
 				String params[] = {p1, p2, p3};
@@ -52,13 +51,13 @@ public class Run {
 				//这里可将k.res写入excel对应行
 				//System.out.println("this action:"+result);
 			}
-			c[4] = ft2.format(new Date()); //写入用例结束时间
+			c[5] = ft2.format(new Date()); //写入用例结束时间
 			if(result){
-				c[5] = "PASS";
+				c[6] = "PASS";
 			}else{
-				c[5] = "FAIL";
+				c[6] = "FAIL";
 			}
-			log.write("INFO", "---------------CASE END: "+c[0]+" "+c[5]+"---------------");
+			log.write("INFO", "---------------CASE END: "+c[1]+" "+c[6]+"---------------");
 		}
 		return suit; 
 	}

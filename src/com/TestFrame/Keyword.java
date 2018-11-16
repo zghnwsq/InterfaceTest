@@ -37,7 +37,7 @@ public class Keyword {
 	public boolean httpKeyword(String action, String[] params, Param p){
 		if(action.equals("http.set")) {
 			return httpSet(params);
-		}else if(action.equals("http.send")){
+		}else if(action.equals("http.post")){
 			return httpPost(params);
 		}else if(action.equals("http.getToken")){
 			return httpGetToken(params, p);
@@ -63,9 +63,9 @@ public class Keyword {
 	
 	public boolean assertKeyword(String action, String[] params, Param p){
 		if(action.equals("assertJson")){
-			return assertJson(params);
+			return assertJson(params, p);
 		}else if(action.equals("assertResContain")){
-			return assertResContain(params);
+			return assertResContain(params, p);
 		}else{
 			log.write("SEVERE", "no keyword of assert collection matched!");
 			return false;
@@ -75,7 +75,9 @@ public class Keyword {
 	
 	public boolean httpSet(String params[]) {
 		http = new Http();	
-		http.url= params[0];
+		if(!params[0].equals("")) {
+			http.url= params[0];
+		}
 		log.write("INFO", "new Http Object set");
 		log.write("INFO", "set post url: "+params[0]);
 		return true;
@@ -92,22 +94,18 @@ public class Keyword {
 			log.write("INFO", "try to send request");
 			res = http.post("");
 			log.write("INFO", "response:-->|"+res+"|<---");
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			log.write("SEVERE", e.toString());
 			e.printStackTrace();
 			return false;
-		} catch (IOException e) {
-			log.write("SEVERE", e.toString());
-			e.printStackTrace();
-			return false;
-		}
+		}  
 		return true;
 	}
 	
 	public boolean httpGetToken(String params[], Param p){
-		log.write("INFO", "try to get token");
-		JSONObject json = new JSONObject(res);
+		log.write("INFO", "try to get token");		
 		try{
+			JSONObject json = new JSONObject(res);
 			p.setParam(params[0], json.getString("token"));
 			log.write("INFO", "token: --->|"+json.getString("token")+"|<---");
 		}catch(JSONException e){
@@ -170,9 +168,9 @@ public class Keyword {
 	}
 	
 	public boolean httpGetJsonValue(String[] params, Param p){
-		log.write("INFO", "try to get JSON value by key:"+"--->|"+params[0]+"|<---");
-		JSONObject json = new JSONObject(res);
+		log.write("INFO", "try to get JSON value by key:"+"--->|"+params[0]+"|<---");		
 		try{
+			JSONObject json = new JSONObject(res);
 			p.setParam(params[1], json.getString(params[0]).trim());
 			log.write("INFO", "set key "+params[0]+" value: --->|"+json.getString(params[0])+"|<---");
 		}catch(JSONException e){
@@ -196,19 +194,20 @@ public class Keyword {
 	}
 
 	//以下是断言方法
-	public boolean assertJson(String param[]){
+	public boolean assertJson(String params[], Param p){
 		String value = "";
 		JSONObject json;
-		log.write("INFO", "assertJson: --->|"+param[0]+" = "+param[1]+"|<---");
+		String expect = p.getParam(params[1]);
+		log.write("INFO", "assertJson: --->|"+params[0]+" = "+expect+"|<---");
 		try{
 			json = new JSONObject(res);
-			value = String.valueOf(json.get(param[0]).toString());
+			value = String.valueOf(json.get(params[0]).toString());
 		}catch(Exception e){		
 			log.write("SEVERE", e.toString());
 			e.printStackTrace();
 			return false;
 		}
-		if(value.indexOf(param[1]) != -1){
+		if(value.indexOf(expect) != -1){
 			log.write("INFO", "status: --->|"+value+"|<--- PASS");
 			return true;
 		}else{
@@ -217,13 +216,14 @@ public class Keyword {
 		}	
 	}
 	
-	public boolean assertResContain(String param[]){
-		log.write("INFO", "assertResContain: --->|"+param[0]+"|<---");
-		if(res.indexOf(param[0]) != -1){
-			log.write("INFO", "响应包含字符串：--->|"+param[0]+"|<---PASS");
+	public boolean assertResContain(String params[], Param p){
+		String expect = p.getParam(params[0]);
+		log.write("INFO", "assertResContain: --->|"+expect+"|<---");
+		if(res.indexOf(expect) != -1){
+			log.write("INFO", "响应包含字符串：--->|"+expect+"|<---PASS");
 			return true;
 		}else{
-			log.write("SEVERE", "响应不包含字符串：--->|"+param[0]+"<---FAIL");
+			log.write("SEVERE", "响应不包含字符串：--->|"+expect+"<---FAIL");
 			return false;
 		}
 	}

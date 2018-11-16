@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 
-public class MainIntrance {
+public class MainEntrance {
 
 	public static void main(String[] args) throws SecurityException, IOException {
 		String autoMail = "off";
@@ -18,9 +18,9 @@ public class MainIntrance {
 		String copyMailAccount = "";
 		String title = "";
 		//运行用例集
-		List<String[]> suit = Run.runTestSuit("./testCase/Case1.xlsx", "testCase");
+		List<String[]> suit = Run.runTestSuit("./testCase/Case2.xlsx", "testCase");
 		//获取用例集作为时间戳
-		String suitBegTime = suit.get(0)[3];
+		String suitBegTime = suit.get(0)[4];
 		//创建html报告
 		Report report = new Report(suit);
 		String html = report.buildReport();
