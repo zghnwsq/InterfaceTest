@@ -9,19 +9,19 @@ public class Report {
 	
 	public List<String[]> suit;
 	public String caseRow = "";
-	public String caseModel = "<tr>\n" + 
-    		"                        	<td height=\"28\" bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseName%</td>\n" + 
-    		"                        	<td height=\"28\" bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseBegTime%</td>\n" + 
-    		"                        	<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseEndTime%</td>\n" + 
-    		"                      		<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc; %caseResult%</td>\n" + 
-    		"					   </tr>";
-	public String caseModelWithTh = "<tr>"
+	public String caseModel = "<tr>\r\n" + 
+    		"                        	<td height=\"28\" bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseName%</td>\r\n" + 
+    		"                        	<td height=\"28\" bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseBegTime%</td>\r\n" + 
+    		"                        	<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseEndTime%</td>\r\n" + 
+    		"                      		<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc; %caseResult%</td>\r\n" + 
+    		"					   </tr>\r\n";
+	public String caseModelWithTh = "<tr>\r\n"
 			+ "							<th rowspan=\"%moduleCount%\">%moduleName%</th>"
-			+ "							<td height=\"28\" bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseName%</td>\n"
-			+ "							<td height=\"28\" bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseBegTime%</td>\n"
-			+ "							<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseEndTime%</td>\n"
-			+ "							<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc; %caseResult%</td>\n"
-			+ "						 </tr>";
+			+ "							<td height=\"28\" bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseName%</td>\r\n"
+			+ "							<td height=\"28\" bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseBegTime%</td>\r\n"
+			+ "							<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc;\">%caseEndTime%</td>\r\n"
+			+ "							<td bgcolor=\"#FFFFFF\" align=\"center\" style=\"border:1px solid #ccc; %caseResult%</td>\r\n"
+			+ "						 </tr>\r\n";
     public String html ="";
     
  	public Report(List<String[]> suit){
@@ -117,8 +117,7 @@ public class Report {
 			html = html.replace("%suitResult%", "\">"+suitResult);
 		}
 		html = html.replace("%ratio%", ratio+"%");
-		html = html.replace("%casesRow%", caseRow);
-		
+		html = html.replace("%casesRow%", caseRow);		
 		return html;		
  	}
 
