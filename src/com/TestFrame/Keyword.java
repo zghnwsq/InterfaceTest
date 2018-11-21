@@ -1,10 +1,9 @@
 package com.TestFrame;
 
-import java.io.IOException;
+//import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-
-import org.apache.http.ParseException;
+//import org.apache.http.ParseException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -51,6 +50,8 @@ public class Keyword {
 			return httpGetJsonValue(params, p);
 		}else if(action.equals("http.addUrlEncodedParam")){
 			return httpAddUrlEncodedParam(params);
+		}else if(action.equals("http.addHeader")){
+			return httpAddHeader(params, p);
 		}else{
 			log.write("SEVERE", "no keyword of http collection matched!");
 			return false;
@@ -129,6 +130,21 @@ public class Keyword {
 			return false;
 		}
 		log.write("INFO", "token added: --->|"+tk+"|<---");
+		return true;
+	}
+	
+	public boolean httpAddHeader(String params[], Param p){
+		log.write("INFO", "try to add header");
+		String value="";
+		try {
+			value = p.getParam(params[1]);
+			http.addHead(params[0], value);
+		} catch (Exception e) {
+			log.write("SEVERE", e.toString());
+			e.printStackTrace();
+			return false;
+		}
+		log.write("INFO", "header added: --->|"+params[0]+":"+value+"|<---");
 		return true;
 	}
 	

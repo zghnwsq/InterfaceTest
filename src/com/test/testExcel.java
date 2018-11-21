@@ -22,6 +22,17 @@ public class testExcel {
 //			System.out.println("");
 //		}
 		
+		
+		List<List<String>> res = Excel.readExcelSheets("./testCase/Case2.xlsx");
+		for(List<String> i:res) {
+			//System.out.println(i.get(0).equals(""));
+			for(String j:i) {
+				System.out.print("|"+j+"|---");
+			}
+			//System.out.println(i.size());
+			System.out.println("");
+		}
+		
 //		TestSuit s = new TestSuit("./testCase/Case2.xlsx", "testCase");
 //		List<String[]> suit;
 //		suit = s.getTestSuit();
@@ -51,10 +62,10 @@ public class testExcel {
 //		String src = "33333333444444444";
 //		System.out.println(src.replace("33","f"));
 //	
-		List<String[]> a = new ArrayList<String[]>();
-		String[] b = {"PASS","hahaha"};
-		a.add(b);
-		Excel.writeExcel(a, "./testCase/Case2.xlsx", "testCase");
+//		List<String[]> a = new ArrayList<String[]>();
+//		String[] b = {"PASS","hahaha"};
+//		a.add(b);
+//		Excel.writeExcel(a, "./testCase/Case2.xlsx", "testCase");
 		
 		
 

@@ -19,6 +19,7 @@ public class MainEntrance {
 		String title = "";
 		//运行用例集
 		List<String[]> suit = Run.runTestSuit("./testCase/Case2.xlsx", "testCase");
+		//List<String[]> suit = Run.runTestSuit("./testCase/Case2.xlsx"); //运行整个sheet
 		//获取用例集作为时间戳
 		String suitBegTime = suit.get(0)[4];
 		//创建html报告

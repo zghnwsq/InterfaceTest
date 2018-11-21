@@ -17,12 +17,18 @@ public class TestSuit {
 	public List<String[]> testSuit;
 	public List<List<String>> sheet;	
 	
+	public TestSuit(String excel){
+		this.excel = excel;	
+		this.sheetName = "";
+		testSuit = new ArrayList<String[]>();
+	}
+	
 	public TestSuit(String excel, String sheetName){
 		this.excel = excel;
 		this.sheetName = sheetName;	
 		testSuit = new ArrayList<String[]>();
 	}
-	
+		
 	/***
 	 * 
 	 * @return 返回testSiut，包含用例名，起止行数，执行起止时间，结果
@@ -37,7 +43,11 @@ public class TestSuit {
 		String begTime = "begTime";
 		String endTime = "endTime";
 		String result = "result";
-		sheet = Excel.readExcel(excel, sheetName); //读取excel,得到List<List<String>>
+		if(sheetName == null || sheetName.equals("")) {
+			sheet = Excel.readExcelSheets(excel); //读取所有sheet
+		}else {
+			sheet = Excel.readExcel(excel, sheetName); //读取指定sheet,得到List<List<String>>
+		}
 		//遍历获得testSuit信息(用例指针范围)
 		Iterator<List<String>> it = sheet.iterator();
 		while (it.hasNext()) {

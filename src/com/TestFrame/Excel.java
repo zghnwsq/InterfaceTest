@@ -66,6 +66,60 @@ public class Excel {
         return lists;
     }
     
+    public static List<List<String>> readExcelSheets(String path) {
+        String fileType = path.substring(path.lastIndexOf(".") + 1);
+        // return a list contains many list
+        List<List<String>> lists = new ArrayList<List<String>>();
+        //读取excel文件
+        InputStream is = null;
+        Workbook wb = null;
+        try {
+            is = new FileInputStream(path);
+            //获取工作薄
+            //Workbook wb = null;
+            if (fileType.equals("xls")) {
+                wb = new HSSFWorkbook(is);
+            } else if (fileType.equals("xlsx")) {
+                wb = new XSSFWorkbook(is);
+            } else {
+                return null;
+            }
+
+            //读取工作页sheet
+            int sheetCount = wb.getNumberOfSheets();
+            //Sheet sheet = wb.getSheetAt(0);
+            //Sheet sheet = wb.getSheet(sheetName);
+            for(int i=0;i<sheetCount;i++) {
+            	Sheet sheet = wb.getSheetAt(i);
+	            //第一行为标题
+	            for (Row row : sheet) {
+	                ArrayList<String> list = new ArrayList<String>();
+	                if(i>0 && row.getCell(0).getStringCellValue().equals("Module")) {
+	                	continue;  //第二个及以后的sheet,忽略首行
+	                }else {
+		                for (Cell cell : row) {
+		                    //根据不同类型转化成字符串
+		                    //cell.setCellType(Cell.CELL_TYPE_STRING);
+		                    cell.setCellType(CellType.STRING);
+		                    list.add(cell.getStringCellValue());
+		                }
+	                }
+	                lists.add(list);
+	            }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+            		wb.close();
+            		is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return lists;
+    }
+    
     //写入excel
     public static void writeExcel(List<String[]> msg, String path, String sheetName) throws IOException{ 
     	if(msg.isEmpty()) {
@@ -82,7 +136,12 @@ public class Excel {
         } else if (fileType.equals("xlsx")) {
             wb = new XSSFWorkbook(is);
         }
-        Sheet sheet = wb.getSheet(sheetName);
+        Sheet sheet;
+    	if(sheetName.equals("")) {
+    		sheet = wb.getSheetAt(0);
+    	}else {
+    		sheet = wb.getSheet(sheetName);
+    	}
         for(String[] row : msg) {
         	int i = msg.indexOf(row)+1;
         	Row r = sheet.getRow(i);
