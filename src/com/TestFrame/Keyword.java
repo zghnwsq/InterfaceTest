@@ -99,6 +99,7 @@ public class Keyword {
 			log.write("INFO", "response:-->|"+res+"|<---");
 			httpClearUrlParam(); //发送请求后,清空urlParam
 		} catch (Exception e) {
+			httpClearUrlParam(); //发送请求后,清空urlParam
 			log.write("SEVERE", e.toString());
 			e.printStackTrace();
 			return false;
