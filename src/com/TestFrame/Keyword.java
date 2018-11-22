@@ -52,6 +52,8 @@ public class Keyword {
 			return httpAddUrlEncodedParam(params);
 		}else if(action.equals("http.addHeader")){
 			return httpAddHeader(params, p);
+		}else if(action.equals("http.removeHeader")){
+			return httpRemoveHeader(params);
 		}else{
 			log.write("SEVERE", "no keyword of http collection matched!");
 			return false;
@@ -145,6 +147,19 @@ public class Keyword {
 			return false;
 		}
 		log.write("INFO", "header added: --->|"+params[0]+":"+value+"|<---");
+		return true;
+	}
+	
+	public boolean httpRemoveHeader(String params[]) {
+		log.write("INFO", "try to remove header");
+		try {
+			http.removeHead(params[0]);
+		}catch (Exception e) {
+			log.write("SEVERE", e.toString());
+			e.printStackTrace();
+			return false;
+		}
+		log.write("INFO", "header removed: --->|"+params[0]+"|<---");
 		return true;
 	}
 	

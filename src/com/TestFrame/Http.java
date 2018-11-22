@@ -20,6 +20,7 @@ public class Http {
 	public String value="";
 	public String url="";
 	public List<String[]> head=null;
+
 	//构造函数
 	public Http(){
 		httpClient = HttpClientBuilder.create().build();
@@ -36,7 +37,22 @@ public class Http {
 	 * @param head 多个请求头键值对，以字符串数组集合方式存储
 	 */
 	public void addHead(ArrayList<String[]> head){
-		this.head = head;
+		this.head.addAll(head);
+	}
+	
+	//去掉头
+	public void removeHead(String hd) {
+		if(key.equals(hd)) {
+			value = "";
+		}
+		if(head!=null) {
+			for(String[] h: head) {
+				if(h[0].equals(hd)) {
+					String [] rr = new String[] {h[0],h[1]};
+					head.remove(rr);
+				}
+			}
+		}
 	}
 	
 	//建立新连接 抛弃旧连接

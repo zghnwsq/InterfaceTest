@@ -18,13 +18,14 @@ public class MainEntrance {
 		String copyMailAccount = "";
 		String title = "";
 		//运行用例集
-		List<String[]> suit = Run.runTestSuit("./testCase/Case2.xlsx", "testCase");
-		//List<String[]> suit = Run.runTestSuit("./testCase/Case2.xlsx"); //运行整个sheet
+		//List<String[]> suit = Run.runTestSuit("./testCase/Case2.xlsx", "testCase");
+		List<String[]> suit = Run.runTestSuit("./testCase/Run.xlsx"); //运行整个sheet
 		//获取用例集作为时间戳
 		String suitBegTime = suit.get(0)[4];
 		//创建html报告
 		Report report = new Report(suit);
-		String html = report.buildReport();
+		//String html = report.buildReport();
+		String html = report.buildSumReport();
 		//读取邮件配置
 		List<List<String>> mailConfig = Excel.readExcel("./mail/config.xlsx", "mail");
 		for(List<String> i:mailConfig) {

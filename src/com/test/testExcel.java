@@ -2,7 +2,12 @@ package com.test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.util.SystemOutLogger;
+
 import com.TestFrame.Excel;
 import com.TestFrame.Report;
 import com.TestFrame.Run;
@@ -12,7 +17,7 @@ public class testExcel {
 
 	public static void main(String[] args) throws SecurityException, IOException {
 //		System.out.println(System.getProperty("user.dir")); //当前用户路径
-//		List<List<String>> res = Excel.readExcel("./testCase/Case2.xlsx", "testCase");
+//		List<List<String>> res = Excel.readExcel("./testCase/Case2.xlsx", "sheet1");
 //		for(List<String> i:res) {
 //			System.out.println(i.get(0).equals(""));
 //			for(String j:i) {
@@ -23,17 +28,49 @@ public class testExcel {
 //		}
 		
 		
-		List<List<String>> res = Excel.readExcelSheets("./testCase/Case2.xlsx");
-		for(List<String> i:res) {
-			//System.out.println(i.get(0).equals(""));
-			for(String j:i) {
-				System.out.print("|"+j+"|---");
+//		Map<String, List<List<String>>> res = Excel.readExcelSheets("./testCase/Case3.xlsx");
+//		for(String i : res.keySet()) {
+//			System.out.println(i);
+//			for(List<String> j:res.get(i)) {
+//				for(String k : j){
+//					System.out.print("|"+k+"|---");
+//				}
+//				System.out.println("");
+//			}
+//		}
+//		System.out.println("");
+		
+		TestSuit s = new TestSuit("./testCase/Run.xlsx");
+		Map<String, List<String[]>> r = s.getTestSuits(); 
+		for(String i : r.keySet()) {
+			System.out.println(i);
+			for(String[] j : r.get(i)) {
+				for(String k : j) {
+					System.out.print("|"+k+"|---");
+				}
+				System.out.println("");
 			}
-			//System.out.println(i.size());
 			System.out.println("");
 		}
 		
-//		TestSuit s = new TestSuit("./testCase/Case2.xlsx", "testCase");
+		
+		
+		
+		
+//		for(List<List<String>> i:res) {
+//			//System.out.println(i.get(0).equals(""));
+//			for(List<String> j:i) {
+//				for(String k : j){
+//					System.out.print("|"+k+"|---");
+//				}
+//				System.out.println("");
+//			}
+//			//System.out.println(i.size());
+//			System.out.println("");
+//		}
+		
+		
+//		TestSuit s = new TestSuit("./testCase/Case2.xlsx", "sheet1");
 //		List<String[]> suit;
 //		suit = s.getTestSuit();
 //		for(String[] i: suit) {
