@@ -27,9 +27,9 @@ public class TestA {
 		http.addHead("token", json.getString("token"));
 		
 		//登录
-//		http.url = "http://www.testingedu.com.cn/inter/HTTP//login?username=ted1&password=123456"; //username=ted1&
-//		res = http.post("");
-//		System.out.println(res);
+		http.url = "http://www.testingedu.com.cn/inter/HTTP/login?username=ted1%27+or+1%3D1+%23&password=888888"; //username=ted1&
+		res = http.post("");
+		System.out.println(res);
 
 		//获取用户信息
 //		http.url = "http://www.testingedu.com.cn/inter/HTTP//getUserInfo?id=1";
@@ -50,7 +50,8 @@ public class TestA {
 		//测试url enccode		
 //		res = http.post("http://www.testingedu.com.cn/inter/HTTP//register?username=ted123&pwd=123456&nickname=ted123&describe=哈哈哈");
 //		System.out.println(res);
-		String url = "?username=tedted&password=&nickname=你好&des=";
+//		String url = "?username=tedted&password=&nickname=你好&des=";
+		String url = "ted1' or 1=1 #";
 		String a = URLEncoder.encode(url, "UTF-8");
 		System.out.println(a);
 		

@@ -156,8 +156,13 @@ public class Run {
 				}
 				log.write("INFO", "---------------CASE END: "+c[1]+" "+c[6]+"---------------");
 			}
-			Excel.writeExcel(toExcel, excel, Integer.valueOf(s));  //把结果写入对应sheet
-			log.write("INFO", "---------------结果写入Sheet---------------");
+			try {
+				Excel.writeExcel(toExcel, excel, Integer.valueOf(s));  //把结果写入对应sheet
+				log.write("INFO", "---------------结果写入Sheet---------------");
+			}catch(Exception e) {
+				e.printStackTrace();
+				log.write("SEVERE", e.toString());
+			}
 			suitResult.addAll(suit);
 		}
 		

@@ -54,6 +54,8 @@ public class Keyword {
 			return httpAddHeader(params, p);
 		}else if(action.equals("http.removeHeader")){
 			return httpRemoveHeader(params);
+		}else if(action.equals("http.addBody")){
+			return httpAddBody(params);
 		}else{
 			log.write("SEVERE", "no keyword of http collection matched!");
 			return false;
@@ -87,6 +89,7 @@ public class Keyword {
 	}
 	
 	public boolean httpPost(String params[]) {
+		res = ""; //发送前重置响应
 		if(!params[0].equals("")){
 			http.url = params[0];
 		}
@@ -98,8 +101,10 @@ public class Keyword {
 			res = http.post("");
 			log.write("INFO", "response:-->|"+res+"|<---");
 			httpClearUrlParam(); //发送请求后,清空urlParam
+			http.body = ""; //发送后重置body
 		} catch (Exception e) {
 			httpClearUrlParam(); //发送请求后,清空urlParam
+			http.body = ""; //发送后重置body
 			log.write("SEVERE", e.toString());
 			e.printStackTrace();
 			return false;
@@ -213,8 +218,17 @@ public class Keyword {
 			return true;
 	}
 	
-	
-	
+	public boolean httpAddBody(String[] params) {
+		log.write("INFO", "try to add Body :"+"--->|"+params[0]+"|<---");	
+		try {
+			http.setBody(params[0]);
+		}catch(Exception e) {
+			log.write("SEVERE", e.toString());
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 	
 	
 	public boolean soapPost(Soap soap, String action, String[] params) {

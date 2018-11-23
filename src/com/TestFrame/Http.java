@@ -1,6 +1,7 @@
 package com.TestFrame;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
@@ -20,6 +22,7 @@ public class Http {
 	public String value="";
 	public String url="";
 	public List<String[]> head=null;
+	public String body="";
 
 	//构造函数
 	public Http(){
@@ -55,6 +58,13 @@ public class Http {
 		}
 	}
 	
+	public void setBody(String body) {
+		if(!body.equals("")) {
+			this.body = body;
+		}
+	}
+	
+	
 	//建立新连接 抛弃旧连接
 	public void newClient() throws IOException {
 		httpClient.close();
@@ -66,6 +76,7 @@ public class Http {
 		if(!url.equals("")) {
 			this.url = url;
 		}
+		//单个header添加
 		HttpPost httpPost = new HttpPost(this.url);
 		if (!key.equals("")){
 			httpPost.addHeader(key,value);
@@ -75,6 +86,11 @@ public class Http {
 			for(String[] i:head){
 				httpPost.addHeader(i[0], i[1]);
 			}
+		}
+		//body添加
+		if(!body.equals("") || body != null) {
+			StringEntity data = new StringEntity(body,Charset.forName("UTF-8"));
+			httpPost.setEntity(data);
 		}
 		//发包
 		response = httpClient.execute(httpPost);		
