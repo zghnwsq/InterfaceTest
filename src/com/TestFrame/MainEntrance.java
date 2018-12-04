@@ -52,6 +52,8 @@ public class MainEntrance {
 		//写入html报告
 		String htmlFileName = suitBegTime.trim().replaceAll("-", "_").replaceAll(":", "").replaceAll(" ", "") ;
 		FileWrite.write("./report/Report_"+htmlFileName+".html", html);
+		FileWrite.write("/root/apache-tomcat-7.0.91/webapps/ROOT/report/Report_"+htmlFileName+".html", html);
+		System.out.println("report/Report_"+htmlFileName+".html");
 		//根据邮件配置发送邮件
 		if(autoMail.equals("on")) {
 			title = title + " " + suitBegTime; //邮件标题加个时间戳
