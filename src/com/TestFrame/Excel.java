@@ -121,7 +121,7 @@ public class Excel {
         return sheets;
     }
     
-    //写入excel
+    //写入excel 废弃
     public static void writeExcel(List<String[]> msg, String path, String sheetName) throws IOException{ 
     	if(msg.isEmpty()) {
     		return;
@@ -155,8 +155,7 @@ public class Excel {
 	        	cell7.setCellValue(row[1]);       
         	}
         }
-          
-        File file = new File(path.replace(".x", "_result.x"));//Excel文件生成后存储的位置。  
+        File file = new File(path.replace(".x", "_result.x"));//Excel文件生成后存储的位置。        
         OutputStream fos  = null;  
         try  
         {  
@@ -199,15 +198,16 @@ public class Excel {
 //    	}
         sheet = wb.getSheetAt(sheetIndex);
         for(String[] row : msg) {
-        	int i = msg.indexOf(row)+1;
+//        	int i = msg.indexOf(row)+1;
+        	int i = Integer.valueOf(row[0]);
         	Row r = sheet.getRow(i);
         	Cell cell6 = r.createCell(6);
         	cell6.setCellType(CellType.STRING);
-        	cell6.setCellValue(row[0]);
-        	if(!row[1].equals("")) {
+        	cell6.setCellValue(row[1]);
+        	if(!row[2].equals("")) {
 	        	Cell cell7 = r.createCell(7);
 	        	cell7.setCellType(CellType.STRING);
-	        	cell7.setCellValue(row[1]);       
+	        	cell7.setCellValue(row[2]);       
         	}
         }
          

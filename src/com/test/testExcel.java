@@ -1,5 +1,6 @@
 package com.test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +54,10 @@ public class testExcel {
 			System.out.println("");
 		}
 		
+		File file = new File("D:\\20171126\\Git\\InterfaceTest\\testCase\\Run_result.xlsx");
+		System.out.println(file.exists());
+		System.out.println(file.isFile());
+		System.out.println(file.delete());
 		
 		
 		

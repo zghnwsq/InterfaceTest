@@ -135,16 +135,21 @@ public class Run {
 					if(action.indexOf("post")!=-1) {
 						//判断结果并写入字符串
 						if(r) {
-							toExcel.add(new String[]{"PASS",Keyword.res});
+							toExcel.add(new String[]{String.valueOf(i), "PASS",Keyword.res});
 						}else {
-							toExcel.add(new String[]{"FAIL",Keyword.res});
+							toExcel.add(new String[]{String.valueOf(i), "FAIL",Keyword.res});
 						}
 					}else {
 						if(r) {
-							toExcel.add(new String[]{"PASS",""});
+							toExcel.add(new String[]{String.valueOf(i), "PASS",""});
 						}else {
-							toExcel.add(new String[]{"FAIL",""});
+							toExcel.add(new String[]{String.valueOf(i), "FAIL",""});
 						}
+					}
+					//如果此步骤执行失败,则跳出当前用例
+					if(!r) {
+						log.write("SEVERE", "---------------Step FAIL And Stop Running This Case---------------");
+						break;
 					}
 					//System.out.println("this action:"+result);
 				}

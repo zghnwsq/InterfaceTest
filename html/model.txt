@@ -49,7 +49,7 @@
                				<table width="592" border="0" cellspacing="0" cellpadding="0" align="center">
                   				<tbody>
 						<tr>
-                    					<td style="font-size: 20px; color: 333333; font-weight: bold; padding-bottom:10px;">XXX项目接口自动化测试报告</td>
+                    					<td style="font-size: 20px; color: 333333; font-weight: bold; padding-bottom:10px;">XXX项目自动化测试报告</td>
                   				</tr>
                   				<tr>
                     					<td style="font-size: 18px; color: 333333; font-weight: bold; padding-bottom:5px;">Summary</td>

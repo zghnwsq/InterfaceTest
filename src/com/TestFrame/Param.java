@@ -44,16 +44,12 @@ public class Param {
 				tmp = paramMap.get(param.substring(param.indexOf("${")+2, param.indexOf("}")).trim()); //从参数map中查出来后去空格
 			}else {
 				tmp = "";
+				System.out.println("no param in dictionary like:"+param);
 			}
+			return tmp;
 		}else {
 			tmp = param.trim(); //传入的也去空格
-		}
-		
-		if(tmp.equals("")) {
-			System.out.println("no param in dictionary like:"+param);
-			return "";			
-		}else {
-			return tmp.trim();
+			return tmp;
 		}
 	}
 
