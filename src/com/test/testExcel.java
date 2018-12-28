@@ -17,19 +17,20 @@ import com.TestFrame.TestSuit;
 public class testExcel {
 
 	public static void main(String[] args) throws SecurityException, IOException {
-//		System.out.println(System.getProperty("user.dir")); //当前用户路径
-//		List<List<String>> res = Excel.readExcel("./testCase/Case2.xlsx", "sheet1");
-//		for(List<String> i:res) {
+		System.out.println(System.getProperty("user.dir")); //当前用户路径
+		List<List<String>> res = Excel.readExcel("./mail/config.xlsx", "mail");
+		for(List<String> i:res) {
 //			System.out.println(i.get(0).equals(""));
-//			for(String j:i) {
-//				System.out.print("|"+j+"|---");
-//			}
-//			System.out.println(i.size());
-//			System.out.println("");
-//		}
+			for(String j:i) {
+//				System.out.print(j.equals(""));
+				System.out.print("|"+j+"|---");
+			}
+			System.out.println(i.size());
+			System.out.println("");
+		}
 		
 		
-//		Map<String, List<List<String>>> res = Excel.readExcelSheets("./testCase/Case3.xlsx");
+//		Map<String, List<List<String>>> res = Excel.readExcelSheets("./mail/config.xlsx");
 //		for(String i : res.keySet()) {
 //			System.out.println(i);
 //			for(List<String> j:res.get(i)) {
@@ -41,23 +42,23 @@ public class testExcel {
 //		}
 //		System.out.println("");
 		
-		TestSuit s = new TestSuit("./testCase/Run.xlsx");
-		Map<String, List<String[]>> r = s.getTestSuits(); 
-		for(String i : r.keySet()) {
-			System.out.println(i);
-			for(String[] j : r.get(i)) {
-				for(String k : j) {
-					System.out.print("|"+k+"|---");
-				}
-				System.out.println("");
-			}
-			System.out.println("");
-		}
-		
-		File file = new File("D:\\20171126\\Git\\InterfaceTest\\testCase\\Run_result.xlsx");
-		System.out.println(file.exists());
-		System.out.println(file.isFile());
-		System.out.println(file.delete());
+//		TestSuit s = new TestSuit("./testCase/Run.xlsx");
+//		Map<String, List<String[]>> r = s.getTestSuits(); 
+//		for(String i : r.keySet()) {
+//			System.out.println(i);
+//			for(String[] j : r.get(i)) {
+//				for(String k : j) {
+//					System.out.print("|"+k+"|---");
+//				}
+//				System.out.println("");
+//			}
+//			System.out.println("");
+//		}
+//		
+//		File file = new File("D:\\20171126\\Git\\InterfaceTest\\testCase\\Run_result.xlsx");
+//		System.out.println(file.exists());
+//		System.out.println(file.isFile());
+//		System.out.println(file.delete());
 		
 		
 		

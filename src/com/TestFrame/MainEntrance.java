@@ -19,7 +19,8 @@ public class MainEntrance {
 		String copyMailAccount = "";
 		String title = "";
 		String casePath="";
-		casePath = System.getenv("casePath"); //获取环境变量 取得运行的用例路径
+//		casePath = System.getenv("casePath"); //获取环境变量 取得运行的用例路径
+		casePath = "./testRun.xlsx";
 		//运行用例集
 		//List<String[]> suit = Run.runTestSuit("./testCase/Case2.xlsx", "testCase");
 		//先清理上次Excel的结果

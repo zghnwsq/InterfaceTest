@@ -39,7 +39,7 @@ public class TestSuit {
 	 * 
 	 * @return 返回testSiut，包含用例名，起止行数，执行起止时间，结果
 	 */
-	
+	//废弃
 	public List<String[]> getTestSuit(){
 		int cusor=0;
 		String caseName = "";

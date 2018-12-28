@@ -42,15 +42,23 @@ public class Excel {
 
             //读取第一个工作页sheet
             //Sheet sheet = wb.getSheetAt(0);
-            Sheet sheet = wb.getSheet(sheetName);
+            Sheet sheet = wb.getSheet(sheetName);     
             //第一行为标题
+            int maxColumnCount = sheet.getRow(0).getPhysicalNumberOfCells();
             for (Row row : sheet) {
                 ArrayList<String> list = new ArrayList<String>();
-                for (Cell cell : row) {
-                    //根据不同类型转化成字符串
-                    //cell.setCellType(Cell.CELL_TYPE_STRING);
-                    cell.setCellType(CellType.STRING);
-                    list.add(cell.getStringCellValue());
+//                System.out.println(row.getPhysicalNumberOfCells()); //debug
+//                System.out.println(row.getCell(0));
+                //最后两行为结果，不需要提取
+                for(int i = 0;i<maxColumnCount;i++){
+                		Cell cell = row.getCell(i);
+//                		System.out.println(cell);
+                		if(cell ==null){
+                			list.add("");
+                		}else{
+                			cell.setCellType(CellType.STRING);
+                			list.add(cell.getStringCellValue());
+                		}
                 }
                 lists.add(list);
             }
@@ -94,16 +102,26 @@ public class Excel {
             //Sheet sheet = wb.getSheet(sheetName);
             for(int i=0;i<sheetCount;i++) {
                 List<List<String>> lists = new ArrayList<List<String>>();
-            	Sheet sheet = wb.getSheetAt(i);
+            		Sheet sheet = wb.getSheetAt(i);
+            		int maxColumnCount = sheet.getRow(0).getPhysicalNumberOfCells();
 	            //第一行为标题
 	            for (Row row : sheet) {
 	                ArrayList<String> list = new ArrayList<String>();
-	                for (Cell cell : row) {
-	                    //根据不同类型转化成字符串
-	                    //cell.setCellType(Cell.CELL_TYPE_STRING);
-	                    cell.setCellType(CellType.STRING);
-	                    list.add(cell.getStringCellValue());
-	                }
+	                for(int j = 0; j<maxColumnCount;j++){
+	            			Cell cell = row.getCell(j);
+	                		if(cell ==null){
+	                			list.add("");
+	                		}else{
+	                			cell.setCellType(CellType.STRING);
+	                			list.add(cell.getStringCellValue());
+	                		}
+	            		}
+//	                for (Cell cell : row) {
+//	                    //根据不同类型转化成字符串
+//	                    //cell.setCellType(Cell.CELL_TYPE_STRING);
+//	                    cell.setCellType(CellType.STRING);
+//	                    list.add(cell.getStringCellValue());
+//	                }
 	                lists.add(list); //添加行
 	            }
 	            sheets.put(String.valueOf(i), lists);  //添加sheet
