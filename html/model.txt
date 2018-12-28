@@ -87,7 +87,7 @@
 							<table width="592" border="1" align="center" class="table_c" style="border-collapse:collapse;">
                       						<tbody>
 								<tr>
-									<td width="100" height="28" align="center" bgcolor="#FFFFFF" style="border:1px solid #ccc;">模块</td>
+									<td width="100" height="28" align="center" bgcolor="#FFFFFF" style="border:1px solid #ccc;">用例组</td>
                           						<td width="100" height="28" align="center" bgcolor="#FFFFFF" style="border:1px solid #ccc;">用例数</td>
                         						<td width="80" height="28" align="center" bgcolor="#FFFFFF" style="border:1px solid #ccc;">通过用例数</td>
                         						<td width="80" align="center" bgcolor="#FFFFFF" style="border:1px solid #ccc;">测试结果</td>

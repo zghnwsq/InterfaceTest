@@ -18,14 +18,18 @@ public class MainEntrance {
 		String receiveMailAccount = "";
 		String copyMailAccount = "";
 		String title = "";
+		String casePath="";
+		casePath = System.getenv("casePath"); //获取环境变量 取得运行的用例路径
 		//运行用例集
 		//List<String[]> suit = Run.runTestSuit("./testCase/Case2.xlsx", "testCase");
 		//先清理上次Excel的结果
-		File fl = new File("./testCase/Run_result.xlsx");
+//		File fl = new File("./testCase/Run_result.xlsx");
+		File fl = new File(casePath+"_result.xlsx");
 		if(fl.exists() && fl.isFile()) {
 			fl.delete();
 		}
-		List<String[]> suit = Run.runTestSuit("./testCase/Run.xlsx"); //运行整个sheet
+//		List<String[]> suit = Run.runTestSuit("./testCase/Run.xlsx"); //运行整个sheet
+		List<String[]> suit = Run.runTestSuit(casePath); //运行整个sheet
 		//获取用例集作为时间戳
 		String suitBegTime = suit.get(0)[4];
 		//创建html报告
