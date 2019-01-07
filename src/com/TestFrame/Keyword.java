@@ -13,12 +13,15 @@ public class Keyword {
 //	public Soap soap;
 	public Log log;
 	public static String res="";
+	public static String webMsg="";
 	public InterfaceKeywords ik;
+	public WebKeywords wk;
 //	public String urlParams = "?";
 	
 	public Keyword(Log log) {
 		this.log = log;
 		ik = new InterfaceKeywords(log);
+		wk = new WebKeywords(log);
 	}
 	
 	
@@ -35,6 +38,10 @@ public class Keyword {
 		}else if(action.indexOf("assert") != -1){
 			boolean kres = ik.assertKeyword(action, params, p);
 			res= ik.getRes();
+			return kres;
+		}else if(action.indexOf("web") != -1){
+			boolean kres = wk.act(action, params, p);
+			res= wk.getMsg();
 			return kres;
 		}else{
 			log.write("SEVERE", "no keyword matched!");

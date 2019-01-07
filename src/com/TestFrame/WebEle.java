@@ -18,7 +18,7 @@ public class WebEle {
 		this.log = log;	
 	}
 	
-	public WebElement get(String method, String locator, String comment) {
+	public WebElement get(String method, String locator) throws NoSuchElementException{
 		//反射,根据method调用By类的方法,返回By对象
 		Class<By> cls = By.class;
 		Method md;
@@ -53,14 +53,15 @@ public class WebEle {
 			return null;
 		}
 		//返回定位的元素
-		try {
-			ele = dr.findElement(by);
-		} catch(NoSuchElementException e) {
-			log.write("SEVERE", "No Such Element Of : " +method+" = "+locator);
-			e.printStackTrace();
-			return null;
-		}
-		return ele;
+//		try {
+//			ele = dr.findElement(by);
+//		} catch(NoSuchElementException e) {
+//			log.write("SEVERE", "No Such Element Of : " +method+" = "+locator);
+//			e.printStackTrace();
+//			return null;
+//		}
+//		return ele;
+		return dr.findElement(by);
 	}
 		
 }

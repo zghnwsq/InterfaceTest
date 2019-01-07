@@ -17,30 +17,30 @@ import com.TestFrame.TestSuit;
 public class testExcel {
 
 	public static void main(String[] args) throws SecurityException, IOException {
-		System.out.println(System.getProperty("user.dir")); //当前用户路径
-		List<List<String>> res = Excel.readExcel("./mail/config.xlsx", "mail");
-		for(List<String> i:res) {
-//			System.out.println(i.get(0).equals(""));
-			for(String j:i) {
-//				System.out.print(j.equals(""));
-				System.out.print("|"+j+"|---");
-			}
-			System.out.println(i.size());
-			System.out.println("");
-		}
-		
-		
-//		Map<String, List<List<String>>> res = Excel.readExcelSheets("./mail/config.xlsx");
-//		for(String i : res.keySet()) {
-//			System.out.println(i);
-//			for(List<String> j:res.get(i)) {
-//				for(String k : j){
-//					System.out.print("|"+k+"|---");
-//				}
-//				System.out.println("");
+//		System.out.println(System.getProperty("user.dir")); //当前用户路径
+//		List<List<String>> res = Excel.readExcel("./mail/config.xlsx", "mail");
+//		for(List<String> i:res) {
+////			System.out.println(i.get(0).equals(""));
+//			for(String j:i) {
+////				System.out.print(j.equals(""));
+//				System.out.print("|"+j+"|---");
 //			}
+//			System.out.println(i.size());
+//			System.out.println("");
 //		}
-//		System.out.println("");
+		
+		
+		Map<String, List<List<String>>> res = Excel.readExcelSheets("./Case3.xlsx");
+		for(String i : res.keySet()) {
+			System.out.println(i);
+			for(List<String> j:res.get(i)) {
+				for(String k : j){
+					System.out.print("|"+k+"|---");
+				}
+				System.out.println("");
+			}
+		}
+		System.out.println("");
 		
 //		TestSuit s = new TestSuit("./testCase/Run.xlsx");
 //		Map<String, List<String[]>> r = s.getTestSuits(); 

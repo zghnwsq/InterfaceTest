@@ -106,7 +106,7 @@ public class Run {
 			for(String[]c : suit){
 				c[4] = ft2.format(new Date()); //写入用例开始执行时间
 				boolean result = true;
-				log.write("INFO", "---------------CASE START: "+c[1]+"---------------");
+				log.write("INFO", "vvvvvvvvvvvvvvv CASE START: "+c[1]+" vvvvvvvvvvvvvvv");
 				for(int i = Integer.valueOf(c[2]); i<=Integer.valueOf(c[3]) ;i++ ){
 					String action = cases.get(Integer.valueOf(i)).get(2); //action
 					//如果p1单元格为空,则填空字符串
@@ -148,7 +148,7 @@ public class Run {
 					}
 					//如果此步骤执行失败,则跳出当前用例
 					if(!r) {
-						log.write("SEVERE", "---------------Step FAIL And Stop Running This Case---------------");
+						log.write("SEVERE", "xxxxxxxxxxxx Step FAIL And Stop Running This Case xxxxxxxxxxxx");
 						break;
 					}
 					//System.out.println("this action:"+result);
@@ -159,7 +159,7 @@ public class Run {
 				}else{
 					c[6] = "FAIL";
 				}
-				log.write("INFO", "---------------CASE END: "+c[1]+" "+c[6]+"---------------");
+				log.write("INFO", "^^^^^^^^^^^^CASE END: "+c[1]+" "+c[6]+"^^^^^^^^^^^^");
 			}
 			try {
 				Excel.writeExcel(toExcel, excel, Integer.valueOf(s));  //把结果写入对应sheet
