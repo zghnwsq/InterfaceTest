@@ -3,8 +3,9 @@ package com.TestFrame;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
+//import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 public class WebEle {
@@ -18,7 +19,7 @@ public class WebEle {
 		this.log = log;	
 	}
 	
-	public WebElement get(String method, String locator) throws NoSuchElementException{
+	public WebElement get(String method, String locator) throws WebDriverException{
 		//反射,根据method调用By类的方法,返回By对象
 		Class<By> cls = By.class;
 		Method md;

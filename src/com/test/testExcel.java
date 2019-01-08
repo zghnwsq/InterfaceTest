@@ -17,7 +17,7 @@ import com.TestFrame.TestSuit;
 public class testExcel {
 
 	public static void main(String[] args) throws SecurityException, IOException {
-//		System.out.println(System.getProperty("user.dir")); //当前用户路径
+		System.out.println(System.getProperty("user.dir")); //当前用户路径
 //		List<List<String>> res = Excel.readExcel("./mail/config.xlsx", "mail");
 //		for(List<String> i:res) {
 ////			System.out.println(i.get(0).equals(""));

@@ -1,5 +1,8 @@
 package com.TestFrame;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 //import java.io.IOException;
 //import java.io.UnsupportedEncodingException;
 //import java.net.URLEncoder;
@@ -40,9 +43,37 @@ public class Keyword {
 			res= ik.getRes();
 			return kres;
 		}else if(action.indexOf("web") != -1){
-			boolean kres = wk.act(action, params, p);
-			res= wk.getMsg();
-			return kres;
+			String act = action.split(".")[1];
+			Class<WebKeywords> cls = WebKeywords.class;
+			try {
+				Method method = cls.getDeclaredMethod(act, String[].class, Param.class);
+				boolean kres = (Boolean) method.invoke(wk, params, p);
+				res= wk.getMsg();
+				return kres;
+			} catch (NoSuchMethodException e) {
+				log.write("SEVERE", "No Such Method: "+act);
+				e.printStackTrace();
+				return false;
+			} catch (SecurityException e) {
+				log.write("SEVERE", "Security Exception!");
+				e.printStackTrace();
+				return false;
+			}catch (IllegalAccessException e) {
+				log.write("SEVERE", "IllegalAccessException!");
+				e.printStackTrace();
+				return false;
+			} catch (IllegalArgumentException e) {
+				log.write("SEVERE", "IllegalArgumentException!");
+				e.printStackTrace();
+				return false;
+			} catch (InvocationTargetException e) {
+				log.write("SEVERE", "InvocationTargetException!");
+				e.printStackTrace();
+				return false;
+			}
+//			boolean kres = wk.act(action, params, p);
+//			res= wk.getMsg();
+//			return kres;
 		}else{
 			log.write("SEVERE", "no keyword matched!");
 			return false;

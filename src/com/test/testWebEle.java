@@ -10,6 +10,7 @@ import com.TestFrame.Param;
 import com.TestFrame.WebEle;
 import com.TestFrame.WebKeywords;
 
+
 public class testWebEle {
 
 	public static void main(String[] args) throws SecurityException, IOException {
@@ -27,14 +28,19 @@ public class testWebEle {
 //		dr.close();
 //		dr.quit();
 		
+//		AbstractWebDriverEventListener
+		
 		WebKeywords wk = new WebKeywords(log);
 		Param p = new Param();
 		p.setParam("key", "hahahaha");
-		wk.ie(new String[]{"http://www.baidu.com","",""});
-		wk.input(new String[]{"id","kw","${key}"}, p); 
-		wk.click(new String[]{"id","su","搜索"}); 
-		wk.dr.close();
-		wk.dr.quit();
+		wk.ie(new String[]{"http://www.baidu.com","",""}, p);
+		wk.getAttribute(new String[]{"id=su","value","s"},p); 
+		System.out.println(p.getParam("${s}"));
+		wk.input(new String[]{"id=kw","","${key}"}, p); 
+		wk.click(new String[]{"id=su","","搜索"}, p); 
+//		wk.alertAccept(new String[]{"","",""}, p);
+//		wk.dr.close();
+//		wk.dr.quit();
 	}
 
 }
