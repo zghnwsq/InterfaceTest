@@ -20,6 +20,7 @@ public class MainEntrance {
 		String title = "";
 		String casePath="";
 		casePath = System.getenv("casePath"); //获取环境变量 取得运行的用例路径
+		System.out.println(casePath);
 //		casePath = "./Web.xlsx";
 		//运行用例集
 		//List<String[]> suit = Run.runTestSuit("./testCase/Case2.xlsx", "testCase");

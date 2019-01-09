@@ -106,7 +106,7 @@ public class Run {
 			for(String[]c : suit){
 				c[4] = ft2.format(new Date()); //写入用例开始执行时间
 				boolean result = true;
-				log.write("INFO", "vvvvvvvvvvvvvvv CASE START: "+c[1]+" vvvvvvvvvvvvvvv");
+				log.write("INFO", "v v v v v v v v v v v v v v v CASE START: "+c[1]+" v v v v v v v v v v v v v v v");
 				for(int i = Integer.valueOf(c[2]); i<=Integer.valueOf(c[3]) ;i++ ){
 					String action = cases.get(Integer.valueOf(i)).get(2); //action
 					//如果p1单元格为空,则填空字符串

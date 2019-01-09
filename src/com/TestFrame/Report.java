@@ -149,9 +149,15 @@ public class Report {
 				if(i[6].equals("PASS")) {
 					modulePassCount++;
 				}
+				if(suit.indexOf(i)==suit.size()-1) {  //第一个模块就是最后一行
+					module.put(moduleName, String.valueOf(moduleCaseCount));
+					modulePass.put(moduleName, String.valueOf(modulePassCount));
+				}
 			}else if(!i[0].equals("") && !moduleName.equals("") && !i[0].equals(moduleName)) {  //下一个module
+				//先保存上一个module的信息
 				module.put(moduleName, String.valueOf(moduleCaseCount));
 				modulePass.put(moduleName, String.valueOf(modulePassCount));
+				//再重置中间变量,重新开始计算
 				modulePassCount = 0;
 				moduleName = i[0];
 				moduleCaseCount = 1;

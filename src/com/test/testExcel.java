@@ -17,7 +17,7 @@ import com.TestFrame.TestSuit;
 public class testExcel {
 
 	public static void main(String[] args) throws SecurityException, IOException {
-		System.out.println(System.getProperty("user.dir")); //当前用户路径
+//		System.out.println(System.getProperty("user.dir")); //当前用户路径
 //		List<List<String>> res = Excel.readExcel("./mail/config.xlsx", "mail");
 //		for(List<String> i:res) {
 ////			System.out.println(i.get(0).equals(""));
@@ -29,31 +29,31 @@ public class testExcel {
 //			System.out.println("");
 //		}
 		
-		
-		Map<String, List<List<String>>> res = Excel.readExcelSheets("./Case3.xlsx");
-		for(String i : res.keySet()) {
-			System.out.println(i);
-			for(List<String> j:res.get(i)) {
-				for(String k : j){
-					System.out.print("|"+k+"|---");
-				}
-				System.out.println("");
-			}
-		}
-		System.out.println("");
-		
-//		TestSuit s = new TestSuit("./testCase/Run.xlsx");
-//		Map<String, List<String[]>> r = s.getTestSuits(); 
-//		for(String i : r.keySet()) {
+//		
+//		Map<String, List<List<String>>> res = Excel.readExcelSheets("./Case3.xlsx");
+//		for(String i : res.keySet()) {
 //			System.out.println(i);
-//			for(String[] j : r.get(i)) {
-//				for(String k : j) {
+//			for(List<String> j:res.get(i)) {
+//				for(String k : j){
 //					System.out.print("|"+k+"|---");
 //				}
 //				System.out.println("");
 //			}
-//			System.out.println("");
 //		}
+//		System.out.println("");
+		
+		TestSuit s = new TestSuit("./Web.xlsx");
+		Map<String, List<String[]>> r = s.getTestSuits(); 
+		for(String i : r.keySet()) {
+			System.out.println(i);
+			for(String[] j : r.get(i)) {
+				for(String k : j) {
+					System.out.print("|"+k+"|---");
+				}
+				System.out.println("");
+			}
+			System.out.println("");
+		}
 //		
 //		File file = new File("D:\\20171126\\Git\\InterfaceTest\\testCase\\Run_result.xlsx");
 //		System.out.println(file.exists());

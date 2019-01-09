@@ -111,7 +111,12 @@ public class WebKeywords {
 	
 	public boolean ie(String[] params, Param p) {
 		try {
-			System.setProperty("webdriver.ie.driver", "./driver/win/IEDriverServer.exe");
+			String driverPath = System.getenv("driver");
+			if(driverPath.equals("")) {
+				System.setProperty("webdriver.ie.driver", "./driver/win/IEDriverServer.exe");
+			}else {
+				System.setProperty("webdriver.ie.driver", driverPath+"\\IEDriverServer.exe");
+			}		
 			dr = new InternetExplorerDriver();
 			ele = new WebEle(dr, log);
 			dr.manage().window().maximize();
@@ -150,7 +155,12 @@ public class WebKeywords {
 	
 	public boolean chrome(String[] params, Param p) {
 		try {
-			System.setProperty("webdriver.chorme.driver", "./driver/win/chromedriver.exe");
+			String driverPath = System.getenv("driver");
+			if(driverPath.equals("")) {
+				System.setProperty("webdriver.chorme.driver", "./driver/win/chromedriver.exe");
+			}else {
+				System.setProperty("webdriver.chorme.driver", driverPath+"\\chromedriver.exe");
+			}	
 			dr = new ChromeDriver();
 			dr.manage().window().maximize();
 			ele = new WebEle(dr, log);
