@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -634,5 +636,41 @@ public class WebKeywords {
 			return false;
 		}
 	}
+	
+	public boolean excuteJavascript(String[] params,Param p) {
+		JavascriptExecutor js = (JavascriptExecutor)dr;
+		try {
+			if(params[1].equals("")) {
+				js.executeScript(params[0]);
+			}else {
+				String args = p.getParam(params[1]);
+				js.executeScript(params[0], args);
+			}
+			log.write("INFO", "Execute Javascript: |"+params[0]+" |---Success!");
+			return true;
+		}
+		catch (WebDriverException e) {
+			log.write("SEVERE", "Execute Javascript: |"+params[0]+" |---Fail!");
+			log.write("SEVERE", e.getMessage());
+			if(autoScreenshot==true) {
+				this.takeScreenshot();
+			}
+			quit();
+			return false;
+		}
+		catch (Exception e) {
+			log.write("SEVERE", "Execute Javascript: |"+params[0]+" |---Fail!");
+			log.write("SEVERE", e.toString());
+			e.printStackTrace();
+			quit();
+			return false;
+		}
+	}
+	
+	
+	
+	
+	
+	
 	
 }
