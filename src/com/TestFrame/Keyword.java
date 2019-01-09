@@ -43,7 +43,7 @@ public class Keyword {
 			res= ik.getRes();
 			return kres;
 		}else if(action.indexOf("web") != -1){
-			String act = action.split(".")[1];
+			String act = action.split("\\.")[1];
 			Class<WebKeywords> cls = WebKeywords.class;
 			try {
 				Method method = cls.getDeclaredMethod(act, String[].class, Param.class);

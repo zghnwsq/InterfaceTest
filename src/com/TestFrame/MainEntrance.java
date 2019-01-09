@@ -20,12 +20,17 @@ public class MainEntrance {
 		String title = "";
 		String casePath="";
 		casePath = System.getenv("casePath"); //获取环境变量 取得运行的用例路径
-//		casePath = "./testRun.xlsx";
+//		casePath = "./Web.xlsx";
 		//运行用例集
 		//List<String[]> suit = Run.runTestSuit("./testCase/Case2.xlsx", "testCase");
 		//先清理上次Excel的结果
 //		File fl = new File("./testCase/Run_result.xlsx");
-		File fl = new File(casePath+"_result.xlsx");
+		File fl;
+		if(casePath.indexOf("xlsx")!=-1) {
+			fl = new File(casePath.replace(".xlsx", "")+"_result.xlsx");
+		}else {
+			fl = new File(casePath.replace(".xls", "")+"_result.xls");
+		}		
 		if(fl.exists() && fl.isFile()) {
 			fl.delete();
 		}
@@ -63,8 +68,8 @@ public class MainEntrance {
 		//写入html报告
 		String htmlFileName = suitBegTime.trim().replaceAll("-", "_").replaceAll(":", "").replaceAll(" ", "") ;
 		FileWrite.write("./report/Report_"+htmlFileName+".html", html);
-		FileWrite.write("/root/apache-tomcat-7.0.91/webapps/ROOT/report/Report_"+htmlFileName+".html", html);
-		System.out.println("report/Report_"+htmlFileName+".html");
+//		FileWrite.write("/root/apache-tomcat-7.0.91/webapps/ROOT/report/Report_"+htmlFileName+".html", html);
+//		System.out.println("report/Report_"+htmlFileName+".html");
 		//根据邮件配置发送邮件
 		if(autoMail.equals("on")) {
 			title = title + " " + suitBegTime; //邮件标题加个时间戳

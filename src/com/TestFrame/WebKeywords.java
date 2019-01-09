@@ -96,14 +96,16 @@ public class WebKeywords {
 		}
 	}
 	
-	public void quit(String[] params, Param p) {
+	public boolean quit(String[] params, Param p) {
 		try {
 			this.dr.close();
 			this.dr.quit();
 			log.write("INFO", "Quit!");
+			return true;
 		}catch(Exception e) {
 			e.printStackTrace();
 			log.write("SEVERE", e.toString());
+			return false;
 		}
 	}
 	

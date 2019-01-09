@@ -1,5 +1,6 @@
 package com.test;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -31,6 +32,12 @@ public class testWebEle {
 //		dr.quit();
 		
 //		AbstractWebDriverEventListener
+//		String casePath="D:\\20171126\\Git\\InterfaceTest\\testCase\\Run.xlsx";
+//		File fl = new File(casePath.replace(".xlsx", "")+"_result.xlsx");
+//		if(fl.exists() && fl.isFile()) {
+//			fl.delete();
+//			System.out.println("1");
+//		}
 		
 		WebKeywords wk = new WebKeywords(log);
 		Param p = new Param();
@@ -40,9 +47,9 @@ public class testWebEle {
 		System.out.println(p.getParam("${s}"));
 		wk.input(new String[]{"id=kw","","${key}"}, p); 
 		wk.click(new String[]{"id=su","","搜索"}, p); 
-//		wk.alertAccept(new String[]{"","",""}, p);
-//		wk.dr.close();
-//		wk.dr.quit();
+		wk.alertAccept(new String[]{"","",""}, p);
+		wk.dr.close();
+		wk.dr.quit();
 	}
 
 }
