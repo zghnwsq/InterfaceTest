@@ -19,7 +19,7 @@ public class MainEntrance {
 		String copyMailAccount = "";
 		String title = "";
 		String casePath="";
-		String[] run = System.getenv("run").split(";");
+		String[] run = System.getenv("run").split(":");
 		casePath = run[0]; //获取环境变量 取得运行的用例路径
 		System.out.println(casePath);
 //		casePath = "./Web.xlsx";
