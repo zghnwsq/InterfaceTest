@@ -258,13 +258,14 @@ public class Run {
 					c[6] = "FAIL";
 				}
 				log.write("INFO", "---------------CASE END: "+c[1]+" "+c[6]+" SCENE:"+scene+"---------------");
-				String[] sc = new String[6]; //新建数组,独立存储场景结果,不影响suit
+				String[] sc = new String[7]; //新建数组,独立存储场景结果,不影响suit
 				sc[0] = new String(c[0]);
 				sc[1] = new String(c[1]+"scene"+scene);
 				sc[2] = new String(c[2]);
 				sc[3] = new String(c[3]);
 				sc[4] = new String(c[4]);
 				sc[5] = new String(c[5]);
+				sc[6] = new String(c[6]);
 				suitScene.add(sc);
 			}
 			suitRes.addAll(suitScene); //添加每个场景的结果
