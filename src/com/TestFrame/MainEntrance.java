@@ -19,8 +19,8 @@ public class MainEntrance {
 		String copyMailAccount = "";
 		String title = "";
 		String casePath="";
-		String run = System.getenv("run");
-		casePath = run.split(",")[0]; //获取环境变量 取得运行的用例路径
+		String[] run = System.getenv("run").split(";");
+		casePath = run[0]; //获取环境变量 取得运行的用例路径
 		System.out.println(casePath);
 //		casePath = "./Web.xlsx";
 		//运行用例集
@@ -38,8 +38,8 @@ public class MainEntrance {
 		}
 //		List<String[]> suit = Run.runTestSuit("./testCase/Run.xlsx"); //运行整个sheet
 		List<String[]> suit;
-		if(run.split(",").length==3) {
-			suit = Run.runTestSuitWithParam(casePath,  run.split(",")[1], run.split(",")[2]); //参数化运行sheet
+		if(run.length==3) {
+			suit = Run.runTestSuitWithParam(casePath,  run[1], run[2]); //参数化运行sheet
 		}else {
 			suit = Run.runTestSuit(casePath); //运行整个sheet
 		}
