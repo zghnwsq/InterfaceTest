@@ -18,14 +18,14 @@ public class testExcel {
 
 	public static void main(String[] args) throws SecurityException, IOException {
 //		System.out.println(System.getProperty("user.dir")); //当前用户路径
-//		List<List<String>> res = Excel.readExcel("./mail/config.xlsx", "mail");
+//		List<List<String>> res = Excel.readExcel("./DataDriven.xlsx", "data");
 //		for(List<String> i:res) {
 ////			System.out.println(i.get(0).equals(""));
 //			for(String j:i) {
 ////				System.out.print(j.equals(""));
 //				System.out.print("|"+j+"|---");
 //			}
-//			System.out.println(i.size());
+////			System.out.println(i.size());
 //			System.out.println("");
 //		}
 		
@@ -42,18 +42,18 @@ public class testExcel {
 //		}
 //		System.out.println("");
 		
-		TestSuit s = new TestSuit("./Web.xlsx");
-		Map<String, List<String[]>> r = s.getTestSuits(); 
-		for(String i : r.keySet()) {
-			System.out.println(i);
-			for(String[] j : r.get(i)) {
-				for(String k : j) {
-					System.out.print("|"+k+"|---");
-				}
-				System.out.println("");
-			}
-			System.out.println("");
-		}
+//		TestSuit s = new TestSuit("./testRun.xlsx");
+//		Map<String, List<String[]>> r = s.getTestSuits(); 
+//		for(String i : r.keySet()) {
+//			System.out.println(i);
+//			for(String[] j : r.get(i)) {
+//				for(String k : j) {
+//					System.out.print("|"+k+"|---");
+//				}
+//				System.out.println("");
+//			}
+//			System.out.println("");
+//		}
 //		
 //		File file = new File("D:\\20171126\\Git\\InterfaceTest\\testCase\\Run_result.xlsx");
 //		System.out.println(file.exists());
@@ -76,9 +76,9 @@ public class testExcel {
 //		}
 		
 		
-//		TestSuit s = new TestSuit("./testCase/Case2.xlsx", "sheet1");
+//		TestSuit s3 = new TestSuit("./DataDriven.xlsx", "case");
 //		List<String[]> suit;
-//		suit = s.getTestSuit();
+//		suit = s3.getTestSuit();
 //		for(String[] i: suit) {
 //			for(String j :i) {
 //				System.out.print("|"+j+"|---");
@@ -88,15 +88,19 @@ public class testExcel {
 //		Report r =  new Report(suit);
 //		r.buildReport();
 		
-		
-		
-		//
-//		List<String[]> s = Run.runTestSuit("./testCase/Case1.xlsx", "testCase");
-//		for(String[] i : s){
+//		List<String[]> s1 = Run.runTestSuit("./Case3.xlsx");
+//		for(String[] i : s1){
 //			for(String j : i){
 //				System.out.println(j);
 //			}
 //		}
+//		
+		List<String[]> s2 = Run.runTestSuitWithParam("./DataDriven.xlsx", "case",  "data");
+		for(String[] i : s2){
+			for(String j : i){
+				System.out.println(j);
+			}
+		}
 		
 //		String a = "dfdfdfdfdf %name% ffjfjjfjff";
 //		//a.replaceFirst("\\%name\\%", "<td></td>");

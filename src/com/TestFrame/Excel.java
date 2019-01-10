@@ -49,7 +49,6 @@ public class Excel {
                 ArrayList<String> list = new ArrayList<String>();
 //                System.out.println(row.getPhysicalNumberOfCells()); //debug
 //                System.out.println(row.getCell(0));
-                //最后两行为结果，不需要提取
                 for(int i = 0;i<maxColumnCount;i++){
                 		Cell cell = row.getCell(i);
 //                		System.out.println(cell);
@@ -139,7 +138,7 @@ public class Excel {
         return sheets;
     }
     
-    //写入excel 废弃
+    //写入excel 
     public static void writeExcel(List<String[]> msg, String path, String sheetName) throws IOException{ 
     	if(msg.isEmpty()) {
     		return;
@@ -162,15 +161,16 @@ public class Excel {
     		sheet = wb.getSheet(sheetName);
     	}
         for(String[] row : msg) {
-        	int i = msg.indexOf(row)+1;
+//        	int i = msg.indexOf(row)+1;
+        	int i = Integer.valueOf(row[0]);
         	Row r = sheet.getRow(i);
-        	Cell cell6 = r.createCell(6);
+        	Cell cell6 = r.createCell(Integer.valueOf(row[1]));
         	cell6.setCellType(CellType.STRING);
-        	cell6.setCellValue(row[0]);
-        	if(!row[1].equals("")) {
-	        	Cell cell7 = r.createCell(7);
+        	cell6.setCellValue(row[2]);
+        	if(!row[3].equals("")) {
+	        	Cell cell7 = r.createCell(Integer.valueOf(row[1])+1);
 	        	cell7.setCellType(CellType.STRING);
-	        	cell7.setCellValue(row[1]);       
+	        	cell7.setCellValue(row[3]);       
         	}
         }
         File file = new File(path.replace(".x", "_result.x"));//Excel文件生成后存储的位置。        
@@ -215,17 +215,18 @@ public class Excel {
 //    		sheet = wb.getSheet(sheetName);
 //    	}
         sheet = wb.getSheetAt(sheetIndex);
+        //msg: 0行序号, 1列序号, 2结果, 3详细结果
         for(String[] row : msg) {
 //        	int i = msg.indexOf(row)+1;
-        	int i = Integer.valueOf(row[0]);
+        	int i = Integer.valueOf(row[0]); //要写入的行序号
         	Row r = sheet.getRow(i);
-        	Cell cell6 = r.createCell(6);
+        	Cell cell6 = r.createCell(Integer.valueOf(row[1]));
         	cell6.setCellType(CellType.STRING);
-        	cell6.setCellValue(row[1]);
-        	if(!row[2].equals("")) {
-	        	Cell cell7 = r.createCell(7);
+        	cell6.setCellValue(row[2]);
+        	if(!row[3].equals("")) {
+	        	Cell cell7 = r.createCell(Integer.valueOf(row[1])+1);
 	        	cell7.setCellType(CellType.STRING);
-	        	cell7.setCellValue(row[2]);       
+	        	cell7.setCellValue(row[3]);       
         	}
         }
          

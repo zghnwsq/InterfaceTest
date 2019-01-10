@@ -39,7 +39,7 @@ public class TestSuit {
 	 * 
 	 * @return 返回testSiut，包含用例名，起止行数，执行起止时间，结果
 	 */
-	//废弃
+	//
 	public List<String[]> getTestSuit(){
 		int cusor=0;
 		String caseName = "";
@@ -95,7 +95,12 @@ public class TestSuit {
 			}else if(row.get(1).toString().equals(caseName) && cusor == sheet.size()-1){
 				//最后一行
 				endRow = cusor;				
-				testSuit.add(new String[]{row.get(0).toString(), caseName, String.valueOf(initRow), String.valueOf(endRow), begTime, endTime, result});				
+				caseName = row.get(1).toString();
+				if(firstCaseOfModule[1].equals(caseName)) {
+					testSuit.add(new String[]{firstCaseOfModule[0], caseName, String.valueOf(initRow), String.valueOf(endRow), begTime, endTime, result});
+				}else {
+					testSuit.add(new String[]{"", caseName, String.valueOf(initRow), String.valueOf(endRow), begTime, endTime, result});				
+				}			
 			}else {
 				endRow = cusor; //中间行
 			}
