@@ -257,7 +257,7 @@ public class Run {
 				}else{
 					c[6] = "FAIL";
 				}
-				log.write("INFO", "---------------CASE END: "+c[1]+" "+c[6]+" SCENE:"+scene+"---------------");
+				log.write("INFO", "---------------CASE END: "+c[1]+" SCENE:"+scene+" "+c[6]+"---------------");
 				String[] sc = new String[7]; //新建数组,独立存储场景结果,不影响suit
 				sc[0] = new String(c[0]);
 				sc[1] = new String(c[1]+"scene"+scene);
