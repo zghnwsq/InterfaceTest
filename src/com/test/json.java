@@ -1,7 +1,5 @@
 package com.test;
 
-import java.awt.Window.Type;
-
 import org.json.JSONObject;
 
 public class json {

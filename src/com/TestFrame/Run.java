@@ -180,7 +180,7 @@ public class Run {
 		return suitResult; 
 	}
 
-	public static List<String[]> runTestSuitWithParam(String excel, String caseSheetName, String dataSheetName) throws SecurityException, IOException{
+	public static List<String[]> runTestSuitWithParam(String excel, String caseSheetName, String dataSheetName, String range) throws Exception{
 		SimpleDateFormat ft = new SimpleDateFormat("yyyy_MM_dd_HHmmss"); //文件名时间戳格式
 		SimpleDateFormat ft2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");	//log时间戳格式	
 		Date suitBegTime = new Date(); //用例集开始时间
@@ -195,8 +195,26 @@ public class Run {
 		List<List<String>> cases = ts.getTestCaseColletion(); //获取用例集的步骤集合
 		
 		List<List<String>> data = Excel.readExcel(excel, dataSheetName);
-		int sceneCount= data.get(0).size();
-		for(int scene = 1 ; scene<sceneCount; scene++) {
+//		int sceneCount = data.get(0).size();
+		//增加部分执行数据源的方法
+		StringBuffer sceneCollection = new StringBuffer();
+		if(range.indexOf("-")!=-1) {
+			String[] rg = range.split("-");
+			for(int i=Integer.valueOf(rg[0]); i<=Integer.valueOf(rg[1]); i++) {
+				sceneCollection.append(String.valueOf(i)+",");
+			}
+		}else if(range.indexOf(",")!=-1 || range.trim().length()==1) {
+			sceneCollection.append(range);
+		}else if(range.trim().length()>1 || range.trim().length()<1){
+			throw new Exception ("Error data range! Correct format: '2' or '1-3' or '2,3,5' ");
+		}
+		String[] seneCollection = sceneCollection.toString().split(",");
+		int[] seneCol = new int[seneCollection.length];
+		for(int i =0; i<seneCol.length; i++) {
+			seneCol[i] = Integer.valueOf(seneCollection[i]);
+		}
+		//根据待执行数据源的范围选取数据
+		for(int scene : seneCol) {   //int scene = 1 ; scene<sceneCount; scene++
 			for(List<String> row: data) {
 				p.setParam(row.get(0), row.get(scene));
 			}

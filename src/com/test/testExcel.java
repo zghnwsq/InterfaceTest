@@ -16,7 +16,7 @@ import com.TestFrame.TestSuit;
 
 public class testExcel {
 
-	public static void main(String[] args) throws SecurityException, IOException {
+	public static void main(String[] args) throws Exception {
 //		System.out.println(System.getProperty("user.dir")); //当前用户路径
 //		List<List<String>> res = Excel.readExcel("./DataDriven.xlsx", "data");
 //		for(List<String> i:res) {
@@ -95,7 +95,7 @@ public class testExcel {
 //			}
 //		}
 //		
-		List<String[]> s2 = Run.runTestSuitWithParam("./DataDriven.xlsx", "case",  "data");
+		List<String[]> s2 = Run.runTestSuitWithParam("./DataDriven.xlsx", "case",  "data", "1,2");
 		for(String[] i : s2){
 			for(String j : i){
 				System.out.println(j);

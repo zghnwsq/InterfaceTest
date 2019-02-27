@@ -8,7 +8,7 @@ import javax.mail.MessagingException;
 
 public class MainEntrance {
 
-	public static void main(String[] args) throws SecurityException, IOException {
+	public static void main(String[] args) throws Exception {
 		String autoMail = "off";
 		String myEmailSMTPHost = "";
 		String myEmailAccount = "";
@@ -38,8 +38,8 @@ public class MainEntrance {
 		}
 //		List<String[]> suit = Run.runTestSuit("./testCase/Run.xlsx"); //运行整个sheet
 		List<String[]> suit;
-		if(run.length==3) {
-			suit = Run.runTestSuitWithParam(casePath,  run[1], run[2]); //参数化运行sheet
+		if(run.length==4) {
+			suit = Run.runTestSuitWithParam(casePath,  run[1], run[2], run[3]); //参数化运行sheet
 		}else {
 			suit = Run.runTestSuit(casePath); //运行整个sheet
 		}
