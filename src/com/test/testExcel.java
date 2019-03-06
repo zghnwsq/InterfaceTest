@@ -30,7 +30,7 @@ public class testExcel {
 //		}
 		
 //		
-//		Map<String, List<List<String>>> res = Excel.readExcelSheets("./Case3.xlsx");
+//		Map<String, List<List<String>>> res = Excel.readExcelSheets("./Web.xlsx");
 //		for(String i : res.keySet()) {
 //			System.out.println(i);
 //			for(List<String> j:res.get(i)) {
@@ -42,7 +42,7 @@ public class testExcel {
 //		}
 //		System.out.println("");
 		
-//		TestSuit s = new TestSuit("./testRun.xlsx");
+//		TestSuit s = new TestSuit("./WebTest.xlsx");
 //		Map<String, List<String[]>> r = s.getTestSuits(); 
 //		for(String i : r.keySet()) {
 //			System.out.println(i);
@@ -88,19 +88,20 @@ public class testExcel {
 //		Report r =  new Report(suit);
 //		r.buildReport();
 		
-//		List<String[]> s1 = Run.runTestSuit("./Case3.xlsx");
-//		for(String[] i : s1){
-//			for(String j : i){
-//				System.out.println(j);
-//			}
-//		}
-//		
-		List<String[]> s2 = Run.runTestSuitWithParam("./DataDriven.xlsx", "case",  "data", "1,2");
-		for(String[] i : s2){
+
+		List<String[]> s1 = Run.runTestSuit("./WebTest.xlsx");
+		for(String[] i : s1){
 			for(String j : i){
 				System.out.println(j);
 			}
 		}
+//		
+//		List<String[]> s2 = Run.runTestSuitWithParam("./DataDriven.xlsx", "case",  "data", "1,2");
+//		for(String[] i : s2){
+//			for(String j : i){
+//				System.out.println(j);
+//			}
+//		}
 		
 //		String a = "dfdfdfdfdf %name% ffjfjjfjff";
 //		//a.replaceFirst("\\%name\\%", "<td></td>");

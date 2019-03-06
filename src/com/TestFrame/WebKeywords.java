@@ -156,7 +156,7 @@ public class WebKeywords {
 	public boolean chrome(String[] params, Param p) {
 		try {
 			String driverPath = System.getenv("driver");
-			if(driverPath.equals("")) {
+			if(driverPath.equals("") || driverPath==null) {
 				System.setProperty("webdriver.chorme.driver", "./driver/win/chromedriver.exe");
 			}else {
 				System.setProperty("webdriver.chorme.driver", driverPath+"\\chromedriver.exe");
@@ -228,18 +228,20 @@ public class WebKeywords {
 	public boolean click(String[] params, Param p) {
 		String[] loc= {"",""};
 		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
-			loc = params[0].split("=");
+//			loc = params[0].split("="); // xpath中会含有多个"="
+			loc[0] = params[0].trim().substring(0, params[0].trim().indexOf("="));
+			loc[1] = params[0].trim().substring(params[0].trim().indexOf("=")+1, params[0].trim().length());
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
 			return false;
 		}
 		try {
 			ele.get(loc[0], loc[1]).click();
-			log.write("INFO", "Try to click : |"+params[2]+"|---Success!");
+			log.write("INFO", "Try to click : |"+params[2]+loc[1]+"|---Success!");
 			return true;
 		}
 		catch (WebDriverException e) {
-			log.write("SEVERE", "Try to click : |"+params[2]+"|---Fail!");
+			log.write("SEVERE", "Try to click : |"+params[2]+loc[1]+"|---Fail!");
 			log.write("SEVERE", e.getMessage());
 			if(autoScreenshot==true) {
 				this.takeScreenshot();
@@ -248,7 +250,7 @@ public class WebKeywords {
 			return false;
 		}
 		catch(Exception e) {
-			log.write("SEVERE", "Try to click : |"+params[2]+"|---Fail!");
+			log.write("SEVERE", "Try to click : |"+params[2]+loc[1]+"|---Fail!");
 			log.write("SEVERE", e.toString());
 			e.printStackTrace();
 			quit();

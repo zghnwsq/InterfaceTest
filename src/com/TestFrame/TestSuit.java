@@ -125,18 +125,19 @@ public class TestSuit {
 			List<List<String>> sheet = sheets.get(i);
 			//初始化suit
 			testSuit = new ArrayList<String[]>();
-			cusor = 0;
+			cusor = -1;
 			initRow = 0;
 			endRow = 0;
 			caseName = "";
 			firstCaseOfModule[0] = "";
 			firstCaseOfModule[1] = "";
 			//遍历获得testSuit信息(用例指针范围)
-			Iterator<List<String>> it = sheet.iterator();
+			Iterator<List<String>> it =  sheet.iterator();
 			while (it.hasNext()) {
 				//ModuleName: row.get(0).toString()
 				List<String> row = it.next();
-				cusor = sheet.indexOf(row); //当前行在测试集中的下标
+//				cusor = sheet.indexOf(row); //当前行在测试集中的下标 重复行指针不递增
+				cusor++; //修改自增
 				if(row.get(1).toString().equals("TestCase")){
 					//initRow++;
 					continue; //表头忽略
