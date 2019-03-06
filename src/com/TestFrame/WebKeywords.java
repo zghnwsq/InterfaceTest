@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -226,22 +225,22 @@ public class WebKeywords {
 	}
 
 	public boolean click(String[] params, Param p) {
-		String[] loc= {"",""};
+//		String[] loc= {"",""};
 		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
 //			loc = params[0].split("="); // xpath中会含有多个"="
-			loc[0] = params[0].trim().substring(0, params[0].trim().indexOf("="));
-			loc[1] = params[0].trim().substring(params[0].trim().indexOf("=")+1, params[0].trim().length());
+//			loc[0] = params[0].trim().substring(0, params[0].trim().indexOf("="));
+//			loc[1] = params[0].trim().substring(params[0].trim().indexOf("=")+1, params[0].trim().length());
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
 			return false;
 		}
 		try {
-			ele.get(loc[0], loc[1]).click();
-			log.write("INFO", "Try to click : |"+params[2]+loc[1]+"|---Success!");
+			ele.get(params[0]).click();
+			log.write("INFO", "Try to click : |"+params[2]+params[0]+"|---Success!");
 			return true;
 		}
 		catch (WebDriverException e) {
-			log.write("SEVERE", "Try to click : |"+params[2]+loc[1]+"|---Fail!");
+			log.write("SEVERE", "Try to click : |"+params[2]+params[0]+"|---Fail!");
 			log.write("SEVERE", e.getMessage());
 			if(autoScreenshot==true) {
 				this.takeScreenshot();
@@ -250,7 +249,7 @@ public class WebKeywords {
 			return false;
 		}
 		catch(Exception e) {
-			log.write("SEVERE", "Try to click : |"+params[2]+loc[1]+"|---Fail!");
+			log.write("SEVERE", "Try to click : |"+params[2]+params[0]+"|---Fail!");
 			log.write("SEVERE", e.toString());
 			e.printStackTrace();
 			quit();
@@ -260,21 +259,21 @@ public class WebKeywords {
 	
 	public boolean selectByIndex(String[] params, Param p) {
 		int index=Integer.valueOf(p.getParam(params[1]));
-		String[] loc= {"",""};
+//		String[] loc= {"",""};
 		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
-			loc = params[0].split("=");
+//			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
 			return false;
 		}
 		try {
-			Select s = new Select(ele.get(loc[0], loc[1]));
+			Select s = new Select(ele.get(params[0]));
 			s.selectByIndex(index);
-			log.write("INFO", "Try to select by index : |"+loc[1]+" : "+String.valueOf(index)+"|---Success!");
+			log.write("INFO", "Try to select by index : |"+params[0]+" : "+String.valueOf(index)+"|---Success!");
 			return true;
 		}
 		catch (WebDriverException e) {
-			log.write("SEVERE", "Try to select by index : |"+loc[1]+" : "+String.valueOf(index)+"|---Fail!");
+			log.write("SEVERE", "Try to select by index : |"+params[0]+" : "+String.valueOf(index)+"|---Fail!");
 			log.write("SEVERE", e.getMessage());
 			if(autoScreenshot==true) {
 				this.takeScreenshot();
@@ -283,7 +282,7 @@ public class WebKeywords {
 			return false;
 		}
 		catch(Exception e) {
-			log.write("SEVERE", "Try to select by index : |"+loc[1]+" : "+String.valueOf(index)+"|---Fail!");
+			log.write("SEVERE", "Try to select by index : |"+params[0]+" : "+String.valueOf(index)+"|---Fail!");
 			log.write("SEVERE", e.toString());
 			e.printStackTrace();
 			quit();
@@ -293,21 +292,21 @@ public class WebKeywords {
 	
 	public boolean selectByText(String[] params, Param p) {
 		String label=p.getParam(params[1]);
-		String[] loc= {"",""};
+//		String[] loc= {"",""};
 		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
-			loc = params[0].split("=");
+//			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
 			return false;
 		}
 		try {
-			Select s = new Select(ele.get(loc[0], loc[1]));
+			Select s = new Select(ele.get(params[0]));
 			s.selectByVisibleText(label);
-			log.write("INFO", "Try to select by text : |"+loc[1]+" : "+label+"|---Success!");
+			log.write("INFO", "Try to select by text : |"+params[0]+" : "+label+"|---Success!");
 			return true;
 		}
 		catch (WebDriverException e) {
-			log.write("SEVERE", "Try to select by text : |"+loc[1]+" : "+label+"|---Fail!");
+			log.write("SEVERE", "Try to select by text : |"+params[0]+" : "+label+"|---Fail!");
 			log.write("SEVERE", e.getMessage());
 			if(autoScreenshot==true) {
 				this.takeScreenshot();
@@ -316,7 +315,7 @@ public class WebKeywords {
 			return false;
 		}
 		catch(Exception e) {
-			log.write("SEVERE", "Try to select by text : |"+loc[1]+" : "+label+"|---Fail!");
+			log.write("SEVERE", "Try to select by text : |"+params[0]+" : "+label+"|---Fail!");
 			log.write("SEVERE", e.toString());
 			e.printStackTrace();
 			quit();
@@ -326,21 +325,21 @@ public class WebKeywords {
 	
 	public boolean selectByValue(String[] params, Param p) {
 		String value= p.getParam(params[1]);
-		String[] loc= {"",""};
+//		String[] loc= {"",""};
 		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
-			loc = params[0].split("=");
+//			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
 			return false;
 		}
 		try {
-			Select s = new Select(ele.get(loc[0], loc[1]));
+			Select s = new Select(ele.get(params[0]));
 			s.selectByValue(value);
-			log.write("INFO", "Try to select by value : |"+loc[1]+" : "+value+"|---Success!");
+			log.write("INFO", "Try to select by value : |"+params[0]+" : "+value+"|---Success!");
 			return true;
 		}
 		catch (WebDriverException e) {
-			log.write("SEVERE", "Try to select by value : |"+loc[1]+" : "+value+"|---Fail!");
+			log.write("SEVERE", "Try to select by value : |"+params[0]+" : "+value+"|---Fail!");
 			log.write("SEVERE", e.getMessage());
 			if(autoScreenshot==true) {
 				this.takeScreenshot();
@@ -349,7 +348,7 @@ public class WebKeywords {
 			return false;
 		}
 		catch(Exception e) {
-			log.write("SEVERE", "Try to select by value : |"+loc[1]+" : "+value+"|---Fail!");
+			log.write("SEVERE", "Try to select by value : |"+params[0]+" : "+value+"|---Fail!");
 			log.write("SEVERE", e.toString());
 			e.printStackTrace();
 			quit();
@@ -359,16 +358,16 @@ public class WebKeywords {
 	
 	public boolean input(String[] params, Param p) {
 		String str="";
-		String[] loc= {"",""};
+//		String[] loc= {"",""};
 		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
-			loc = params[0].split("=");
+//			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
 			return false;
 		}
 		try {
 			str = p.getParam(params[2]);
-			ele.get(loc[0], loc[1]).sendKeys(str);
+			ele.get(params[0]).sendKeys(str);
 			log.write("INFO", "Try to input : |"+str+" |---Success!");
 			return true;
 		}
@@ -392,21 +391,21 @@ public class WebKeywords {
 	
 	public boolean text(String[] params, Param p) {
 		String str="";
-		String[] loc= {"",""};
+//		String[] loc= {"",""};
 		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
-			loc = params[0].split("=");
+//			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
 			return false;
 		}
 		try {
-			str = ele.get(loc[0], loc[1]).getText();
+			str = ele.get(params[0]).getText();
 			p.setParam(params[1], str);
-			log.write("INFO", "Get text of : |"+loc[1]+" : "+str+" |---Success!");
+			log.write("INFO", "Get text of : |"+params[0]+" : "+str+" |---Success!");
 			return true;
 		}
 		catch (WebDriverException e) {
-			log.write("SEVERE", "Get text of : |"+loc[1]+" : "+str+" |---Fail!");
+			log.write("SEVERE", "Get text of : |"+params[0]+" : "+str+" |---Fail!");
 			log.write("SEVERE", e.getMessage());
 			if(autoScreenshot==true) {
 				this.takeScreenshot();
@@ -415,7 +414,7 @@ public class WebKeywords {
 			return false;
 		}
 		catch(Exception e) {
-			log.write("SEVERE", "Get text of : |"+loc[1]+" : "+str+" |---Fail!");
+			log.write("SEVERE", "Get text of : |"+params[0]+" : "+str+" |---Fail!");
 			log.write("SEVERE", e.toString());
 			e.printStackTrace();
 			quit();
@@ -425,21 +424,21 @@ public class WebKeywords {
 
 	public boolean getAttribute(String[] params, Param p) {
 		String str="";
-		String[] loc= {"",""};
+//		String[] loc= {"",""};
 		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
-			loc = params[0].split("=");
+//			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
 			return false;
 		}
 		try {
-			str = ele.get(loc[0], loc[1]).getAttribute(params[1]);
+			str = ele.get(params[0]).getAttribute(params[1]);
 			p.setParam(params[2], str);
-			log.write("INFO", "Get text of : |"+loc[1]+" : "+str+" |---Success!");
+			log.write("INFO", "Get text of : |"+params[0]+" : "+str+" |---Success!");
 			return true;
 		}
 		catch (WebDriverException e) {
-			log.write("SEVERE", "Get text of : |"+loc[1]+" : "+str+" |---Fail!");
+			log.write("SEVERE", "Get text of : |"+params[0]+" : "+str+" |---Fail!");
 			log.write("SEVERE", e.getMessage());
 			if(autoScreenshot==true) {
 				this.takeScreenshot();
@@ -448,7 +447,7 @@ public class WebKeywords {
 			return false;
 		}
 		catch(Exception e) {
-			log.write("SEVERE", "Get text of : |"+loc[1]+" : "+str+" |---Fail!");
+			log.write("SEVERE", "Get text of : |"+params[0]+" : "+str+" |---Fail!");
 			log.write("SEVERE", e.toString());
 			e.printStackTrace();
 			quit();
@@ -566,15 +565,15 @@ public class WebKeywords {
 	}
 	
 	public boolean selectFrame(String[] params,Param p) {
-		String[] loc= {"",""};
+//		String[] loc= {"",""};
 		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
-			loc = params[0].split("=");
+//			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
 			return false;
 		}
 		try {
-			dr.switchTo().frame(ele.get(loc[0], loc[1]));
+			dr.switchTo().frame(ele.get(params[0]));
 			log.write("INFO", "Select frame: |"+params[0]+"|---Success!");
 			return true;
 		}
