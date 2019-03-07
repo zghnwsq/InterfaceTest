@@ -89,12 +89,15 @@ public class testExcel {
 //		r.buildReport();
 		
 
-		List<String[]> s1 = Run.runTestSuit("./WebTest.xlsx");
-		for(String[] i : s1){
-			for(String j : i){
-				System.out.println(j);
-			}
-		}
+
+		System.out.println(String.format("ahhahah %s %s", "nini", "hoho"));
+		
+//		List<String[]> s1 = Run.runTestSuit("./WebTest.xlsx");
+//		for(String[] i : s1){
+//			for(String j : i){
+//				System.out.println(j);
+//			}
+//		}
 //		
 //		List<String[]> s2 = Run.runTestSuitWithParam("./DataDriven.xlsx", "case",  "data", "1,2");
 //		for(String[] i : s2){

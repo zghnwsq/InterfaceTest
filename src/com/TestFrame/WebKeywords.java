@@ -17,7 +17,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-
 public class WebKeywords {
 	
 	public Log log;
@@ -223,10 +222,69 @@ public class WebKeywords {
 			return false;
 		}		
 	}
+	
+	
+	public boolean sleep(String[] params, Param p) {
+		int time = Integer.valueOf(params[0].trim())*1000;
+		try {
+			Thread.sleep(time);
+			log.write("INFO", "Sleep: |"+params[0]+"|---Success!");
+			return true;
+		}
+		catch (WebDriverException e) {
+			log.write("SEVERE", "Sleep: |"+params[0]+"|---Fail!");
+			log.write("SEVERE", e.getMessage());
+			if(autoScreenshot==true) {
+				this.takeScreenshot();
+			}
+			quit();
+			return false;
+		}
+		catch(Exception e) {
+			log.write("SEVERE", "Sleep: |"+params[2]+params[0]+"|---Fail!");
+			log.write("SEVERE", e.toString());
+			e.printStackTrace();
+			quit();
+			return false;
+		}
+	}
+	
+	public boolean wait(String[] params, Param p) {
+		if(params[0].trim().equals("") || params[0].indexOf("=")==-1) {
+			log.write("SEVERE", "Wrong params format : "+params[0]);
+			return false;
+		}else if(params[1].trim().equals("") ) {
+			log.write("SEVERE", "Missing waitting time P2: "+params[1]);
+			return false;
+		}	
+		try {
+			int time = Integer.valueOf(params[1].trim());	
+			WebDriverWait wait = new WebDriverWait(dr, time);
+			wait.until(ExpectedConditions.visibilityOf(ele.get(params[0])));
+			log.write("INFO", String.format("Wait  Until Element Is Visible : | %s %s %s s |---Success!", params[2], params[0], params[1]));
+			return true;
+		}
+		catch (WebDriverException e) {
+			log.write("SEVERE", String.format("Wait  Until Element Is Visible : | %s %s %s s |---Fail!", params[2], params[0], params[1]));
+			log.write("SEVERE", e.getMessage());
+			if(autoScreenshot==true) {
+				this.takeScreenshot();
+			}
+			quit();
+			return false;
+		}
+		catch(Exception e) {
+			log.write("SEVERE", String.format("Wait  Until Element Is Visible : | %s %s %s s |---Fail!", params[2], params[0], params[1]));
+			log.write("SEVERE", e.toString());
+			e.printStackTrace();
+			quit();
+			return false;
+		}
+	}
 
 	public boolean click(String[] params, Param p) {
 //		String[] loc= {"",""};
-		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
+		if(!params[0].trim().equals("") || params[0].indexOf("=")!=-1) {
 //			loc = params[0].split("="); // xpath中会含有多个"="
 //			loc[0] = params[0].trim().substring(0, params[0].trim().indexOf("="));
 //			loc[1] = params[0].trim().substring(params[0].trim().indexOf("=")+1, params[0].trim().length());
@@ -260,7 +318,7 @@ public class WebKeywords {
 	public boolean selectByIndex(String[] params, Param p) {
 		int index=Integer.valueOf(p.getParam(params[1]));
 //		String[] loc= {"",""};
-		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
+		if(!params[0].trim().equals("") || params[0].indexOf("=")!=-1) {
 //			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
@@ -293,7 +351,7 @@ public class WebKeywords {
 	public boolean selectByText(String[] params, Param p) {
 		String label=p.getParam(params[1]);
 //		String[] loc= {"",""};
-		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
+		if(!params[0].trim().equals("") || params[0].indexOf("=")!=-1) {
 //			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
@@ -326,7 +384,7 @@ public class WebKeywords {
 	public boolean selectByValue(String[] params, Param p) {
 		String value= p.getParam(params[1]);
 //		String[] loc= {"",""};
-		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
+		if(!params[0].trim().equals("") || params[0].indexOf("=")!=-1) {
 //			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
@@ -359,7 +417,7 @@ public class WebKeywords {
 	public boolean input(String[] params, Param p) {
 		String str="";
 //		String[] loc= {"",""};
-		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
+		if(!params[0].trim().equals("") || params[0].indexOf("=")!=-1) {
 //			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
@@ -392,7 +450,7 @@ public class WebKeywords {
 	public boolean text(String[] params, Param p) {
 		String str="";
 //		String[] loc= {"",""};
-		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
+		if(!params[0].trim().equals("") || params[0].indexOf("=")!=-1) {
 //			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
@@ -425,7 +483,7 @@ public class WebKeywords {
 	public boolean getAttribute(String[] params, Param p) {
 		String str="";
 //		String[] loc= {"",""};
-		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
+		if(!params[0].trim().equals("") || params[0].indexOf("=")!=-1) {
 //			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
@@ -456,7 +514,7 @@ public class WebKeywords {
 	}
 	
 	public boolean alertAccept(String[] params,Param p) {
-		WebDriverWait wait = new WebDriverWait(dr, 10);		
+		WebDriverWait wait = new WebDriverWait(dr, 20);		
 		try {
 			wait.until(ExpectedConditions.alertIsPresent());
 			log.write("INFO", dr.switchTo().alert().getText());
@@ -483,7 +541,7 @@ public class WebKeywords {
 	}
 
 	public boolean alertDismiss(String[] params,Param p) {
-		WebDriverWait wait = new WebDriverWait(dr, 10);		
+		WebDriverWait wait = new WebDriverWait(dr, 20);		
 		try {
 			wait.until(ExpectedConditions.alertIsPresent());
 			log.write("INFO", dr.switchTo().alert().getText());
@@ -510,7 +568,7 @@ public class WebKeywords {
 	}
 	
 	public boolean alertSendkeys(String[] params,Param p) {
-		WebDriverWait wait = new WebDriverWait(dr, 10);	
+		WebDriverWait wait = new WebDriverWait(dr, 20);	
 		String text = p.getParam(params[0]);
 		try {
 			wait.until(ExpectedConditions.alertIsPresent());
@@ -566,7 +624,7 @@ public class WebKeywords {
 	
 	public boolean selectFrame(String[] params,Param p) {
 //		String[] loc= {"",""};
-		if(!params[0].trim().equals("") && params[0].indexOf("=")!=-1) {
+		if(!params[0].trim().equals("") || params[0].indexOf("=")!=-1) {
 //			loc = params[0].split("=");
 		}else {
 			log.write("SEVERE", "Wrong params format : "+params[0]);
@@ -679,11 +737,6 @@ public class WebKeywords {
 			return false;
 		}
 	}
-	
-	
-	
-	
-	
 	
 	
 }
