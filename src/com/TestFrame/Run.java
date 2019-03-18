@@ -215,6 +215,7 @@ public class Run {
 		}
 		//根据待执行数据源的范围选取数据
 		for(int scene : seneCol) {   //int scene = 1 ; scene<sceneCount; scene++
+			//获取数据源
 			for(List<String> row: data) {
 				p.setParam(row.get(0), row.get(scene));
 			}
