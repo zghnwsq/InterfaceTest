@@ -38,11 +38,15 @@ public class MainEntrance {
 		}
 //		List<String[]> suit = Run.runTestSuit("./testCase/Run.xlsx"); //运行整个sheet
 		List<String[]> suit;
+		TestSuit ts = new TestSuit(casePath); //读取用例集
+		Runner runner = new Runner(ts);
 		if(run.length==4) {
-			suit = Run.runTestSuitWithParam(casePath,  run[1], run[2], run[3]); //参数化运行sheet
+//			suit = Run.runTestSuitWithParam(casePath,  run[1], run[2], run[3]); //参数化运行sheet
+			suit = runner.run(casePath, run[2], run[3]);
 		}else {
-			suit = Run.runTestSuit(casePath); //运行整个sheet
-		}
+//			suit = Run.runTestSuit(casePath); //运行整个sheet
+			suit = runner.run();
+		}		
 		//获取用例集作为时间戳
 		String suitBegTime = suit.get(0)[4];
 		//创建html报告

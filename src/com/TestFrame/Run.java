@@ -9,9 +9,9 @@ import java.util.Map;
 
 public class Run {
 	
-	public String initTime;
-	public String endTime;
-	public String result;
+//	public String initTime;
+//	public String endTime;
+//	public String result;
 
 	//运行指定sheet的方法
 	public static List<String[]> runTestSuit(String excel, String sheetName) throws SecurityException, IOException{
