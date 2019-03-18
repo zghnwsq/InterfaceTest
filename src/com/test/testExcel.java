@@ -90,7 +90,7 @@ public class testExcel {
 		
 
 
-		System.out.println(String.format("ahhahah %s %s", "nini", "hoho"));
+//		System.out.println(String.format("ahhahah %s %s", "nini", "hoho"));
 		
 //		List<String[]> s1 = Run.runTestSuit("./WebTest.xlsx");
 //		for(String[] i : s1){

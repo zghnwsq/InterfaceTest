@@ -137,7 +137,8 @@ public class Runner {
 	
 	public List<String[]> run(String excel, String dataSheetName, String range) throws Exception{
 		init();
-		cases = ts.getTestCaseColletion(); //获取用例集的步骤集合		
+		cases = ts.getTestCaseColletion(); //获取用例集的步骤集合
+		suit = ts.getTestSuit(); //获取用例集信息
 		List<List<String>> data = Excel.readExcel(excel, dataSheetName);
 		//增加部分执行数据源的方法
 		StringBuffer sceneCollection = new StringBuffer();
