@@ -1,7 +1,7 @@
 package com.TestFrame;
 
 import java.io.File;
-import java.io.IOException;
+//import java.io.IOException;
 import java.util.List;
 
 import javax.mail.MessagingException;
@@ -45,7 +45,7 @@ public class MainEntrance {
 			ts = new TestSuit(casePath, run[1]);
 			runner = new Runner(ts);
 			suit = runner.run(casePath, run[2], run[3]);
-		}else {
+		}else{
 			ts = new TestSuit(casePath);
 			runner = new Runner(ts);
 //			suit = Run.runTestSuit(casePath); //运行整个sheet

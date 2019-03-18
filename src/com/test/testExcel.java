@@ -12,6 +12,7 @@ import org.apache.poi.util.SystemOutLogger;
 import com.TestFrame.Excel;
 import com.TestFrame.Report;
 import com.TestFrame.Run;
+import com.TestFrame.Runner;
 import com.TestFrame.TestSuit;
 
 public class testExcel {
@@ -100,7 +101,10 @@ public class testExcel {
 //		}
 //		
 //		List<String[]> s2 = Run.runTestSuitWithParam("./DataDriven.xlsx", "case",  "data", "1,2");
-//		for(String[] i : s2){
+//		TestSuit ts = new TestSuit("./DataDriven.xlsx", "case");
+//		Runner runner = new Runner(ts);
+//		List<String[]> s3 = runner.run("./DataDriven.xlsx", "data", "1-2");
+//		for(String[] i : s3){
 //			for(String j : i){
 //				System.out.println(j);
 //			}
