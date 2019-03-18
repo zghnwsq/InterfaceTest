@@ -38,12 +38,16 @@ public class MainEntrance {
 		}
 //		List<String[]> suit = Run.runTestSuit("./testCase/Run.xlsx"); //运行整个sheet
 		List<String[]> suit;
-		TestSuit ts = new TestSuit(casePath); //读取用例集
-		Runner runner = new Runner(ts);
+		TestSuit ts; //读取用例集
+		Runner runner;
 		if(run.length==4) {
 //			suit = Run.runTestSuitWithParam(casePath,  run[1], run[2], run[3]); //参数化运行sheet
+			ts = new TestSuit(casePath, run[1]);
+			runner = new Runner(ts);
 			suit = runner.run(casePath, run[2], run[3]);
 		}else {
+			ts = new TestSuit(casePath);
+			runner = new Runner(ts);
 //			suit = Run.runTestSuit(casePath); //运行整个sheet
 			suit = runner.run();
 		}		
