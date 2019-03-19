@@ -26,6 +26,7 @@ public class Runner {
 	}
 	
 	public void init() throws SecurityException, IOException{
+		//执行时，初始化变量
 		ft = new SimpleDateFormat("yyyy_MM_dd_HHmmss"); //文件名时间戳格式
 		ft2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");	//log时间戳格式	
 		suitBegTime = new Date(); //用例集开始时间
@@ -36,6 +37,12 @@ public class Runner {
 		suitRes = new ArrayList<String[]>(); //用例结果集
 	}
 	
+	/***
+	 * 
+	 * @param suit 当前sheet的测试集信息，存储用例的起止行数，起始时间，结果
+	 * @param cases 当前sheet的具体测试用例及步骤
+	 * @return 返回当前sheet的测试集结果
+	 */
 	public List<String[]> sheetRunner(List<String[]> suit, List<List<String>> cases){
 		List<String[]> st = suit;
 		for(String[]c : st){
@@ -100,9 +107,15 @@ public class Runner {
 		return st;
 	}
 	
+	/***
+	 * 非脚本参数分离的用例执行方法
+	 * @return 返回单个sheet或整个sheet的用例的执行结果
+	 * @throws IOException
+	 */
 	public List<String[]> run() throws IOException{
 		init();
 		if(ts.sheetName == null || ts.sheetName.equals("")){
+			//未指定sheet名则执行整个excel的用例
 //			List<String[]> suitResult =  new ArrayList<String[]>();
 			Map<String, List<String[]>> testSuits = ts.getTestSuits();
 			for(String s : testSuits.keySet()) {		
@@ -123,6 +136,7 @@ public class Runner {
 			}			
 			return suitRes; 
 		}else{
+			//执行指定sheet的用例
 			suit = ts.getTestSuit(); //获取用例集信息
 			cases = ts.getTestCaseColletion(); //获取用例集的步骤集合
 			//这里接单个sheet执行方法
@@ -135,6 +149,14 @@ public class Runner {
 		
 	}
 	
+	/***
+	 * 脚本数据源分离的用例执行方法
+	 * @param excel  excel数据源路径
+	 * @param dataSheetName 数据源的sheet名
+	 * @param range 执行数据源范围
+	 * @return 返回用例集执行结果
+	 * @throws Exception
+	 */
 	public List<String[]> run(String excel, String dataSheetName, String range) throws Exception{
 		init();
 		suit = ts.getTestSuit(); //获取用例集信息
@@ -239,7 +261,4 @@ public class Runner {
 	}
 	
 	
-	
-	
-
 }

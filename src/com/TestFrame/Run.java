@@ -8,7 +8,10 @@ import java.util.List;
 import java.util.Map;
 
 public class Run {
-	
+
+	/*
+	 * 此类废弃，改用Runner类
+	 */
 //	public String initTime;
 //	public String endTime;
 //	public String result;

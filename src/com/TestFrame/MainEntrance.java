@@ -23,8 +23,6 @@ public class MainEntrance {
 		casePath = run[0]; //获取环境变量 取得运行的用例路径
 		System.out.println(casePath);
 //		casePath = "./Web.xlsx";
-		//运行用例集
-		//List<String[]> suit = Run.runTestSuit("./testCase/Case2.xlsx", "testCase");
 		//先清理上次Excel的结果
 //		File fl = new File("./testCase/Run_result.xlsx");
 		File fl;
@@ -36,7 +34,6 @@ public class MainEntrance {
 		if(fl.exists() && fl.isFile()) {
 			fl.delete();
 		}
-//		List<String[]> suit = Run.runTestSuit("./testCase/Run.xlsx"); //运行整个sheet
 		List<String[]> suit;
 		TestSuit ts; //读取用例集
 		Runner runner;
