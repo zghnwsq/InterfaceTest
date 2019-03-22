@@ -215,7 +215,7 @@ public class Runner {
 					result = r && result;
 					//这里可将keyword.res写入excel对应行
 					//发送请求才写入响应
-					if(action.indexOf("post")!=-1) {
+					if(action.indexOf("post")!=-1 || action.indexOf("get")!=-1) {
 						//判断结果并写入字符串
 						if(r) {
 							toExcel.add(new String[]{String.valueOf(i),  String.valueOf(6+(scene-1)*2), "PASS",Keyword.res});
