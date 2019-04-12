@@ -10,10 +10,10 @@ import java.util.Map;
 public class Runner {
 	
 	private SimpleDateFormat ft; //文件名时间戳格式
-	private SimpleDateFormat ft2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");	//log时间戳格式	
-	private Date suitBegTime = new Date(); //用例集开始时间
+	private SimpleDateFormat ft2;	//log时间戳格式SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+	private Date suitBegTime; //用例集开始时间
 	private Log log; //初始化日志
-	private Keyword k = new Keyword(log); //初始化关键字
+	private Keyword k; //初始化关键字
 	private TestSuit ts; //读取用例集
 	private Param p; //全局参数
 	private List<String[]> toExcel; //用于写入excel中的信息
@@ -164,12 +164,12 @@ public class Runner {
 		List<List<String>> data = Excel.readExcel(excel, dataSheetName);
 		//增加部分执行数据源的方法
 		StringBuffer sceneCollection = new StringBuffer();
-		if(range.indexOf("-")!=-1) {
+		if(range.indexOf("-")!=-1) {     // 2-4类型
 			String[] rg = range.split("-");
 			for(int i=Integer.valueOf(rg[0]); i<=Integer.valueOf(rg[1]); i++) {
 				sceneCollection.append(String.valueOf(i)+",");
 			}
-		}else if(range.indexOf(",")!=-1 || range.trim().length()==1) {
+		}else if(range.indexOf(",")!=-1 || range.trim().length()==1) {     // 2 或者 2,3,4类型
 			sceneCollection.append(range);
 		}else if(range.trim().length()>1 || range.trim().length()<1){
 			throw new Exception ("Error data range! Correct format: '2' or '1-3' or '2,3,5' ");

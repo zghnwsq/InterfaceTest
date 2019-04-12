@@ -100,15 +100,15 @@ public class testExcel {
 //			}
 //		}
 //		
-//		List<String[]> s2 = Run.runTestSuitWithParam("./DataDriven.xlsx", "case",  "data", "1,2");
-//		TestSuit ts = new TestSuit("./DataDriven.xlsx", "case");
-//		Runner runner = new Runner(ts);
-//		List<String[]> s3 = runner.run("./DataDriven.xlsx", "data", "1-2");
-//		for(String[] i : s3){
-//			for(String j : i){
-//				System.out.println(j);
-//			}
-//		}
+		List<String[]> s2 = Run.runTestSuitWithParam("./DataDriven.xlsx", "case",  "data", "1,2");
+		TestSuit ts = new TestSuit("./DataDriven.xlsx", "case");
+		Runner runner = new Runner(ts);
+		List<String[]> s3 = runner.run("./DataDriven.xlsx", "data", "1-2");
+		for(String[] i : s3){
+			for(String j : i){
+				System.out.println(j);
+			}
+		}
 		
 //		String a = "dfdfdfdfdf %name% ffjfjjfjff";
 //		//a.replaceFirst("\\%name\\%", "<td></td>");
